@@ -20,11 +20,6 @@ import es.indra.eplatform.EPException;
 import es.indra.eplatform.util.IObjectDefinition;
 import es.indra.eplatform.util.StringUtils;
 
-/**
- *
- * https://smspubli.com/
- *
- */
 
 public class MovistarSmsSenderFunctProvider extends ADbSmsSenderFunctProvider {
 
@@ -53,10 +48,10 @@ public class MovistarSmsSenderFunctProvider extends ADbSmsSenderFunctProvider {
 
 		try {
 			String data = URLEncoder.encode("TM_ACTION", "UTF-8") + "=" + URLEncoder.encode("AUTHENTICATE", "UTF-8");
-	        data += "&" + URLEncoder.encode("TM_LOGIN", "UTF-8") + "=" + URLEncoder.encode(movistarLogin, "UTF-8");
-	        data += "&" + URLEncoder.encode("TM_PASSWORD", "UTF-8") + "=" + URLEncoder.encode(movistarPasswd, "UTF-8");
-	        data += "&" + URLEncoder.encode("to", "UTF-8") + "=" + URLEncoder.encode(destPhone, "UTF-8");
-	        data += "&" + URLEncoder.encode("message", "UTF-8") + "=" + URLEncoder.encode(msg, "UTF-8");
+			data += "&" + URLEncoder.encode("TM_LOGIN", "UTF-8") + "=" + URLEncoder.encode(movistarLogin, "UTF-8");
+			data += "&" + URLEncoder.encode("TM_PASSWORD", "UTF-8") + "=" + URLEncoder.encode(movistarPasswd, "UTF-8");
+			data += "&" + URLEncoder.encode("to", "UTF-8") + "=" + URLEncoder.encode(destPhone, "UTF-8");
+			data += "&" + URLEncoder.encode("message", "UTF-8") + "=" + URLEncoder.encode(msg, "UTF-8");
 
 			URL url = new URL(this.url);
 
@@ -67,27 +62,27 @@ public class MovistarSmsSenderFunctProvider extends ADbSmsSenderFunctProvider {
 			connection.addRequestProperty("Accept", "image/gif, image/x-xbitmap, image/jpeg, image/pjpeg, application/x-shockwave-flash, application/vnd.ms-excel, application/vnd.ms-powerpoint, application/msword, */*");
 			connection.addRequestProperty("Connection", "Keep-Alive");
 
-	        connection.setDoOutput(true);
-	        OutputStreamWriter wr = new OutputStreamWriter(connection.getOutputStream());
-	        wr.write(data);
-	        wr.flush();
+			connection.setDoOutput(true);
+			OutputStreamWriter wr = new OutputStreamWriter(connection.getOutputStream());
+			wr.write(data);
+			wr.flush();
 
 
-	        if (connection.getResponseCode() == HttpURLConnection.HTTP_OK){
-		            BufferedReader reader =
-		            		new BufferedReader(new InputStreamReader(connection.getInputStream()));
+			if (connection.getResponseCode() == HttpURLConnection.HTTP_OK) {
+				BufferedReader reader =
+						new BufferedReader(new InputStreamReader(connection.getInputStream()));
 
-	            String line = reader.readLine();
-	            while (line != null) {
-	                httpResponse = line;
-	                line = reader.readLine();
-	            }
-	            reader.close();
-	        } else {
-	           httpResponse = connection.getResponseMessage();
-	        }
+				String line = reader.readLine();
+				while (line != null) {
+					httpResponse = line;
+					line = reader.readLine();
+				}
+				reader.close();
+			} else {
+				httpResponse = connection.getResponseMessage();
+			}
 
-	        connection.disconnect();
+			connection.disconnect();
 
 		} catch (IOException e) {
 			throw new EPException(e);
@@ -100,6 +95,7 @@ public class MovistarSmsSenderFunctProvider extends ADbSmsSenderFunctProvider {
 		}
 		else {
 			response = new SmsSentResponse(SmsState.ERROR);
+			response.setErrorMsg(httpResponse);
 			response.setMsgText(msg);
 			response.setMsgId(UUID.randomUUID().toString());
 		}
