@@ -90,15 +90,14 @@ public class MovistarSmsSenderFunctProvider extends ADbSmsSenderFunctProvider {
 
 		if (StringUtils.isEqualIgnoreCase("OK", httpResponse)) {
 			response = new SmsSentResponse(SmsState.SENT);
-			response.setMsgText(msg);
-			response.setMsgId(UUID.randomUUID().toString());
 		}
 		else {
 			response = new SmsSentResponse(SmsState.ERROR);
 			response.setErrorMsg(httpResponse);
-			response.setMsgText(msg);
-			response.setMsgId(UUID.randomUUID().toString());
 		}
+
+		response.setMsgText(msg);
+		response.setMsgId(UUID.randomUUID().toString());
 
 		return response;
 	}
