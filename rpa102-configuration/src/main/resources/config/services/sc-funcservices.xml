@@ -7,9 +7,17 @@
 
 	<funct-provider id="org.elyeva.rpa102.cltfx.sms.funct.ISmsSenderFunctProvider">
 		<properties>
+			<property class="org.elyeva.rpa102.cltfx.sms.funct.movistar.MovistarSmsSenderFunctProvider"/>
+			<property key="smsMovistar.login" value=""/>
+			<property key="smsMovistar.password" value=""/>
+		</properties>
+
+		<!--
+		<properties>
 			<property class="org.elyeva.rpa102.cltfx.sms.funct.smspubli.SmsPubliSenderFunctProvider"/>
 			<property key="smsPubli.apiKey" value="820ffef55f64ebede83262f76bdd44d3"/>
 			<property key="smsPubli.testMode" value="true"/>
 		</properties>
+		 -->
 	</funct-provider>
 </funct-providers>
