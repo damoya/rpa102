@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<jsmoothproject>
+<JVMSearchPath>registry</JVMSearchPath>
+<JVMSearchPath>javahome</JVMSearchPath>
+<JVMSearchPath>jrepath</JVMSearchPath>
+<JVMSearchPath>jdkpath</JVMSearchPath>
+<JVMSearchPath>exepath</JVMSearchPath>
+<JVMSearchPath>jview</JVMSearchPath>
+<arguments>--config ./config/rpa102-app-properties.xml</arguments>
+<classPath>jar\rpa102-clientfx-0.1.0-SNAPSHOT.jar</classPath>
+<currentDirectory>${EXECUTABLEPATH}</currentDirectory>
+<embeddedJar>false</embeddedJar>
+<executableName>rpa102.exe</executableName>
+<initialMemoryHeap>268435456</initialMemoryHeap>
+<mainClassName>org.elyeva.rpa102.cltfx.Rpa102FxApp</mainClassName>
+<maximumMemoryHeap>536870912</maximumMemoryHeap>
+<maximumVersion></maximumVersion>
+<minimumVersion>1.8</minimumVersion>
+<skeletonName>Windowed Wrapper</skeletonName>
+<skeletonProperties>
+<key>Message</key>
+<value>Java has not been found on your computer. Do you want to download it?</value>
+</skeletonProperties>
+<skeletonProperties>
+<key>URL</key>
+<value></value>
+</skeletonProperties>
+<skeletonProperties>
+<key>SingleProcess</key>
+<value>0</value>
+</skeletonProperties>
+<skeletonProperties>
+<key>SingleInstance</key>
+<value>1</value>
+</skeletonProperties>
+<skeletonProperties>
+<key>JniSmooth</key>
+<value>0</value>
+</skeletonProperties>
+<skeletonProperties>
+<key>Debug</key>
+<value>0</value>
+</skeletonProperties>
+</jsmoothproject>

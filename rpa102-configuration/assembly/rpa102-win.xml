@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<assembly>
+	<id>rpa102-win</id>
+
+	<includeBaseDirectory>false</includeBaseDirectory>
+
+	<formats>
+		<format>tar</format>
+	</formats>
+
+	<!-- Copying dependencies -->
+	<dependencySets>
+		<dependencySet>
+			<outputDirectory>/jar</outputDirectory>
+			<scope>runtime</scope>
+			<excludes>
+				<exclude>org.elyeva.rpa102:rpa102-configuration</exclude>
+			</excludes>
+		</dependencySet>
+	</dependencySets>
+
+	<files>
+		<!-- Copying config file -->
+		<!--
+		<file>
+			<source>../rpa102-configuration/src/main/resources/META-INF/config/sis-properties-prod.xml_template
+			</source>
+			<outputDirectory>/sis-config</outputDirectory>
+			<destName>sis-properties.xml_template</destName>
+		</file>
+		<file>
+			<source>../sis-configuration/src/main/resources/sis-config/sis-server-config/sis-server-services-prod.xml</source>
+			<outputDirectory>/sis-config/sis-server-config</outputDirectory>
+			<destName>sis-server-services.xml</destName>
+		</file>
+		 -->
+	</files>
+
+	<fileSets>
+		<!-- JRE -->
+		<fileSet>
+			<directory>target/jre</directory>
+			<outputDirectory>/jre</outputDirectory>
+			<includes>
+				<include>**/*</include>
+			</includes>
+		</fileSet>
+
+		<!-- Config dir -->
+		<fileSet>
+			<directory>../rpa102-configuration/src/main/resources/config</directory>
+			<outputDirectory>/config</outputDirectory>
+			<includes>
+				<include>**</include>
+				<include>**/services/**</include>
+			</includes>
+			<!--
+			<excludes>
+				<exclude>**/adaptation/data/**</exclude>
+				<exclude>**/adaptation/xsd/**</exclude>
+				<exclude>**/resources/**</exclude>
+				<exclude>**/static/**</exclude>
+			</excludes>
+			 -->
+		</fileSet>
+
+		<!--
+		<fileSet>
+			<directory>lib</directory>
+			<outputDirectory>/jar</outputDirectory>
+			<includes>
+				<include>**/*</include>
+			</includes>
+		</fileSet>
+		 -->
+
+		<!-- New directories -->
+		<fileSet>
+			<directory>.</directory>
+			<outputDirectory>/db</outputDirectory>
+			<excludes>
+				<exclude>**/*</exclude>
+			</excludes>
+		</fileSet>
+	</fileSets>
+
+</assembly>

@@ -1,0 +1,1 @@
+.\jre\bin\java -jar ./jar/rpa102-clientfx-0.1.0-SNAPSHOT.jar --config ./config/rpa102-app-properties.xml

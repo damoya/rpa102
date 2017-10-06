@@ -1,0 +1,363 @@
+﻿﻿<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>org.elyeva.rpa102</groupId>
+	<artifactId>rpa102</artifactId>
+	<version>${rpa102.version}</version>
+	<packaging>pom</packaging>
+	<name>rpa102</name>
+	<description>Registro Profesor Aula 102</description>
+
+	<modules>
+		<module>rpa102-core</module>
+		<module>rpa102-commons</module>
+		<module>rpa102-clientfx</module>
+		<module>rpa102-configuration</module>
+	</modules>
+
+	<properties>
+		<rpa102.version>0.1.0-SNAPSHOT</rpa102.version>
+		<eplatform.version>1.8.14-SNAPSHOT</eplatform.version>
+		<eplatformfx.version>0.3.0-SNAPSHOT</eplatformfx.version>
+		<!-- Derby -->
+		<derby.version>10.11.1.1</derby.version>
+		<!-- Apache htttp components  -->
+		<apache-httpcomponents.version>4.5.3</apache-httpcomponents.version>
+		<!-- JSON Version  -->
+		<json.version>20170516</json.version>
+		<!-- JRE -->
+		<jre.version>1.8.77</jre.version>
+	</properties>
+
+	<!--General dependency definition. All dependencies declares within this
+		node can be referenced by this POM or by its child modules' POMs without
+		declaring the version. -->
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.elyeva.rpa102</groupId>
+				<artifactId>rpa102-core</artifactId>
+				<version>${rpa102.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.elyeva.rpa102</groupId>
+				<artifactId>rpa102-commons</artifactId>
+				<version>${rpa102.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.elyeva.rpa102</groupId>
+				<artifactId>rpa102-clientfx</artifactId>
+				<version>${rpa102.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.elyeva.rpa102</groupId>
+				<artifactId>rpa102-configuration</artifactId>
+				<version>${rpa102.version}</version>
+			</dependency>
+			<!-- eplatform dependences -->
+			<dependency>
+				<groupId>es.indra.eplatformfx</groupId>
+				<artifactId>eplatformfx-app</artifactId>
+				<version>${eplatformfx.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>es.indra.eplatformfx</groupId>
+				<artifactId>eplatformfx-app-xtras</artifactId>
+				<version>${eplatformfx.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>es.indra.eplatformfx</groupId>
+				<artifactId>eplatformfx-data-ui</artifactId>
+				<version>${eplatformfx.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>es.indra.eplatform</groupId>
+				<artifactId>eplatform-commons</artifactId>
+				<version>${eplatform.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>es.indra.eplatform</groupId>
+				<artifactId>eplatform-app-commons</artifactId>
+				<version>${eplatform.version}</version>
+			</dependency>
+			<!--
+
+			<dependency>
+				<groupId>es.indra.eplatform</groupId>
+				<artifactId>eplatform-comm-serv</artifactId>
+				<version>${eplatform.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>es.indra.eplatform</groupId>
+				<artifactId>eplatform-rmi-serv</artifactId>
+				<version>${eplatform.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>es.indra.eplatform</groupId>
+				<artifactId>eplatform-data-xmlds</artifactId>
+				<version>${eplatform.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>es.indra.eplatform</groupId>
+				<artifactId>eplatform-data-objds</artifactId>
+				<version>${eplatform.version}</version>
+			</dependency>
+			 -->
+			<dependency>
+				<groupId>es.indra.eplatform</groupId>
+				<artifactId>eplatform-services</artifactId>
+				<version>${eplatform.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>es.indra.eplatform</groupId>
+				<artifactId>eplatform-commons-services</artifactId>
+				<version>${eplatform.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>es.indra.eplatform</groupId>
+				<artifactId>eplatform-data</artifactId>
+				<version>${eplatform.version}</version>
+			</dependency>
+
+			<!--  -->
+			<dependency>
+			    <groupId>com.googlecode.libphonenumber</groupId>
+			    <artifactId>libphonenumber</artifactId>
+			    <version>8.8.1</version>
+			</dependency>
+
+			<!-- Derby -->
+			<dependency>
+				<groupId>org.apache.derby</groupId>
+				<artifactId>derby</artifactId>
+				<version>${derby.version}</version>
+			</dependency>
+
+			<!-- Apache http client -->
+
+			<dependency>
+  				<groupId>org.apache.httpcomponents</groupId>
+  				<artifactId>httpclient</artifactId>
+  				<version>${apache-httpcomponents.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.json</groupId>
+				<artifactId>json</artifactId>
+				<version>${json.version}</version>
+			</dependency>
+
+			<!-- JUnit -->
+			<dependency>
+				<groupId>junit</groupId>
+				<artifactId>junit</artifactId>
+				<version>4.11</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+	<dependencies>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<!-- Plugins declared here can be reused by child POM's without taking
+			care of version, if any is reused you may want to configured it. -->
+		<pluginManagement>
+			<plugins>
+				<!-- None is declared here because all plugins have to be configured
+					and reused by child POMs, so they are declared in next sibling node. -->
+			</plugins>
+		</pluginManagement>
+
+		<!-- Plugins declared here are reused by child POM's. No extra re-config.
+			is needed except to override the behavior defined here. If no version is
+			declared the last one found in repositories is used. This feature is not
+			used to avoid going to codehouse or maven repos, sometimes are no in good
+			shape...Specifying version we ensure to get the one catched at nexus repo. -->
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+				<version>1.2.3.RELEASE</version>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-eclipse-plugin</artifactId>
+				<version>2.8</version>
+			</plugin>
+
+			<!-- Activate help goals -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-help-plugin</artifactId>
+				<version>2.0.2</version>
+				<configuration>
+					<!-- your example configuration here -->
+				</configuration>
+			</plugin>
+
+			<!-- Compile specific config -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>2.3.2</version>
+				<configuration>
+					<source>1.8</source>
+					<target>1.8</target>
+					<encoding>ISO-8859-1</encoding>
+					<meminitial>128m</meminitial>
+					<maxmem>512m</maxmem>
+				</configuration>
+			</plugin>
+
+			<!-- Allow jar package -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<version>2.3.1</version>
+			</plugin>
+
+			<!-- Allow execute junits -->
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>cobertura-maven-plugin</artifactId>
+				<version>2.6</version>
+				<dependencies>
+					<dependency>
+						<groupId>org.ow2.asm</groupId>
+						<artifactId>asm</artifactId>
+						<version>5.0.3</version>
+					</dependency>
+				</dependencies>
+				<configuration>
+					<maxmem>512m</maxmem>
+					<instrumentation>
+						<excludes>
+						</excludes>
+					</instrumentation>
+				</configuration>
+			</plugin>
+
+			<!-- Deployment plugin. Just declare version -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-deploy-plugin</artifactId>
+				<version>2.5</version>
+			</plugin>
+
+			<!-- Allow resources to be included in artifacts -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-resources-plugin</artifactId>
+				<version>2.4.3</version>
+				<configuration>
+					<encoding>ISO-8859-1</encoding>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.sonatype.plugins</groupId>
+				<artifactId>nexus-staging-maven-plugin</artifactId>
+				<version>1.5.1</version>
+				<executions>
+					<execution>
+						<id>default-deploy</id>
+						<phase>deploy</phase>
+						<goals>
+							<goal>deploy</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<serverId>nexus</serverId>
+					<nexusUrl>https://slmaven.indra.es/nexus/</nexusUrl>
+					<skipStaging>true</skipStaging>
+				</configuration>
+			</plugin>
+
+		</plugins>
+
+		<resources>
+			<resource>
+				<filtering>true</filtering>
+				<directory>${basedir}/src/main/resources</directory>
+			</resource>
+		</resources>
+
+	</build>
+
+	<profiles>
+
+		<profile>
+			<id>ATMITEC_CI</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+
+			<properties>
+				<ci_repos>https://slmaven.indra.es/nexus/content</ci_repos>
+			</properties>
+
+			<repositories>
+				<!-- Enable ATMITEC Repositories -->
+				<repository>
+					<id>ATMITEC</id>
+					<name>ATMITEC Repositories</name>
+					<url>${ci_repos}/groups/ATMITEC</url>
+					<layout>default</layout>
+					<releases>
+						<enabled>true</enabled>
+						<updatePolicy>always</updatePolicy>
+					</releases>
+					<snapshots>
+						<enabled>true</enabled>
+						<updatePolicy>always</updatePolicy>
+						<checksumPolicy>fail</checksumPolicy>
+					</snapshots>
+				</repository>
+				<repository>
+					<id>ATMITEC_JVM</id>
+					<name>ATMITEC JVM</name>
+					<url>${ci_repos}/repositories/ATMITEC_JVM</url>
+					<releases>
+						<enabled>true</enabled>
+						<checksumPolicy>fail</checksumPolicy>
+					</releases>
+				</repository>
+			</repositories>
+
+			<!-- Allow remote artifact deployment into Nexus repository -->
+			<!--
+			<distributionManagement>
+				<repository>
+					<id>ATMITEC_SIS_Releases</id>
+					<name>ATMITEC SIS Releases</name>
+					<url>${ci_repos}/repositories/ATMITEC_SIS_Releases</url>
+					<uniqueVersion>false</uniqueVersion>
+				</repository>
+				<snapshotRepository>
+					<id>ATMITEC_SIS_Snapshots</id>
+					<name>ATMITEC SIS Snapshots</name>
+					<uniqueVersion>false</uniqueVersion>
+					<url>${ci_repos}/repositories/ATMITEC_SIS_Snapshots</url>
+				</snapshotRepository>
+			</distributionManagement>
+			 -->
+		</profile>
+	</profiles>
+
+	<!--
+	<distributionManagement>
+		<snapshotRepository>
+			<id>nexus-snapshots</id>
+			<url>https://slmaven.indra.es/nexus/content/repositories/snapshots</url>
+		</snapshotRepository>
+	</distributionManagement>
+ 	-->
+</project>

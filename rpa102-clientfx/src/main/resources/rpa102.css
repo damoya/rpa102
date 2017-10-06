@@ -1,0 +1,451 @@
+@font-face {
+    /* 'Neo Sans Std Medium TR' */
+    src: url('/fonts/NeoSans.otf');
+}
+
+@font-face {
+    /* 'Neo Sans Light TR' */
+    src: url('/fonts/NeoSans-Light.otf');
+}
+
+@font-face {
+    /* 'Neo Sans' */
+    src: url('/fonts/NeoSans.ttf');
+}
+
+
+@font-face {
+    /* 'Roboto' */
+    src: url('/fonts/Roboto-Regular.ttf');
+}
+
+
+.root {
+	/* -fx-font-family: "Roboto"; */
+
+	-ep-default-background-color: white;
+	-ep-default-font-size: 8pt;
+
+	/*default colors */
+	-swatch-grey: rgb(200.0, 200.0, 200.0);
+	-swatch-dark-grey: rgb(150.0, 150.0, 150.0);
+	-swatch-light-grey: rgb(230.0, 230.0, 230.0);
+	-swatch-toolbar: rgb(245.0, 245.0, 245.0);
+	-swatch-toolbar-selected: rgb(215.0, 215.0, 215.0);
+
+	/*
+    -fx-background-color: transparent;
+    */
+    -fx-background-color: white;
+
+    -fx-text-base-color: rgb(100.0, 100.0, 100.0);
+	-fx-text-button-normal: -swatch-500;
+	-fx-text-button-colored: rgb(255.0, 255.0, 255.0);
+	-fx-text-button-text: rgb(100.0, 100.0, 100.0);
+	-fx-text-wkscmp-title-color: rgb(100.0, 100.0, 100.0);
+	-fx-text-title-color: rgb(45.0, 45.0, 45.0);
+	-fx-text-subtitle-color: rgb(65.0, 65.0, 65.0);
+	-fx-text-control-title-color: rgb(130.0, 130.0, 130.0);
+	-fx-text-fill: -fx-text-base-color;
+
+
+	-fx-wks-background-color: #EAEAeA;
+}
+
+.menu-bar {
+	-fx-background-color: -ep-default-background-color;
+}
+
+.menu {
+	-fx-font-size: 10pt;
+}
+
+
+/*******************************************************************************
+ * toolbar
+ ******************************************************************************/
+
+.tool-bar {
+	-fx-background-color: -ep-default-background-color;
+	-fx-border-width: 0 0 1 0;
+	-fx-border-color: -swatch-grey;
+	-fx-padding: 5 5 5 5;
+}
+
+.tool-bar .combo-box-base {
+	-fx-border-width: 0;
+}
+
+.tool-bar .button, .tool-bar .toggle-button, .tool-bar .menu-button {
+	-fx-background-color: -swatch-toolbar;
+	-fx-text-fill: -fx-text-base-color;
+	-fx-font-size: 8pt;
+
+	/*
+	-fx-pref-height: 28;
+	-fx-min-height: 28;
+	-fx-pref-width: 24;
+	-fx-min-width: 24;
+	-fx-background-radius: 0;
+	-fx-padding: 0;
+	*/
+}
+
+.tool-bar .button:pressed, .tool-bar .toggle-button:pressed, .tool-bar .toggle-button:selected
+{
+	-fx-background-color: -swatch-grey;
+}
+
+.tool-bar .toggle-button {
+	-fx-background-color: -swatch-toolbar;
+}
+
+.tool-bar .separator {
+	-fx-padding: 5 10 5 10;
+}
+
+/*
+.eplatformfx-tabbed-wks-mgr {
+	-fx-background-position: bottom;
+	-fx-background-repeat: no-repeat;
+	-fx-background-size: contain;
+}
+*/
+
+.eplatformfx-tabbed-wks-mgr-tab {
+	-fx-font-size: 10pt;
+}
+
+.eplatformfx-app-view-panel-background {
+	-fx-background-color: -ep-default-background-color;
+}
+
+.eplatformfx-dashboard-wks-btn {
+	-fx-background-color: red;
+}
+
+/*******************************************************************************
+ * eplatform - wks 			                       				               *
+ ******************************************************************************/
+.eplatformfx-wks-background {
+	-fx-background-color: -fx-wks-background-color;
+	-fx-padding: 10 10 10 10;
+}
+
+/*******************************************************************************
+ * eplatform - wkscmd			                       				           *
+ ******************************************************************************/
+.eplatformfx-wkscmp {
+	-fx-padding: 5 0 0 0;
+	/*
+	 * -fx-padding: 5 10 10 10;
+	 * -fx-border-color: red;
+	 */
+	-fx-background-color: transparent;
+}
+
+/*******************************************************************************
+ * eplatform - default view		                       				           *
+ ******************************************************************************/
+/*
+.eplatformfx-default-view {
+	-fx-border-color: cyan;
+	-fx-padding: 10 10 0 10;
+}
+
+.eplatformfx-view-background {
+	-fx-background-color: yellow;
+}
+*/
+
+.eplatformfx-dialog-button-bar-background {
+	-fx-spacing: 8.0;
+	-fx-padding: 10.0;
+}
+
+.eplatformfx-dialog-button-bar-button {
+	-fx-font-size: 9pt;
+}
+
+.eplatformfx-columns-view #menu-view {
+	-fx-border-width: 0 0 0 0;
+}
+
+.eplatformfx-docking-single-dock-node-container, .eplatformfx-columns-view {
+	-fx-background-insets: 3;
+	-fx-background-color: rgb(255.0, 255.0, 255.0);
+	-fx-background-radius: 4.0;
+	-fx-effect: dropshadow(gaussian, rgb(0.0, 0.0, 0.0, 0.15), 6.0, 0.7, 0.0, 1.5);
+	-fx-padding: 13 16 16 16;
+
+	/*
+	-fx-border-width: 1;
+	-fx-border-insets: 10 10 0 10;
+	-fx-border-color: red;*/
+}
+
+.eplatformfx-docking-single-dock-node-container #title-bar, .eplatformfx-columns-view #title-bar {
+	-fx-background-color: transparent;
+	/*
+	-fx-padding: 0 0 20 0;
+	-fx-border-color: blue;
+	*/
+}
+
+.eplatformfx-docking-single-dock-node-container #title-bar .label, .eplatformfx-columns-view #title-bar .label {
+	-fx-font-size: 12.0px;
+	-fx-font-weight: bold;
+	-fx-text-fill: -fx-text-wkscmp-title-color;
+}
+
+.eplatformfx-docking-group-dock-node-container {
+	-fx-background-color: pink;
+}
+
+.eplatformfx-docking-split-dock-node-container {
+	-fx-border-color: transparent;
+	-fx-background-color: transparent;
+}
+
+.eplatformfx-docking-split-dock-node-container > .split-pane-divider {
+	-fx-border-color: transparent;
+	-fx-background-color: transparent;
+	/* -fx-padding: 5 5 5 5; */
+}
+
+
+.eplatformfx-columns-layout {
+	-fx-background-color: rgba(200, 200, 200, 1);
+	-fx-padding: 10 10 10 10;
+/* 	-fx-border-color: transparent; */
+}
+
+.eplatformfx-columns-layout-scroll {
+	-fx-border-color: white;
+/* 	-fx-padding: 0 0 0 0; */
+}
+
+
+.eplatformfx-dialog-panel-background {
+	-fx-background-color: white;
+}
+
+.eplatformfx-dialog-panel-content {
+	-fx-padding: 30 10 0 10;
+	-fx-background-color: transparent;
+}
+
+/*******************************************************************************
+ * eplatformfx-form-panel
+ ******************************************************************************/
+
+.eplatformfx-form-panel {
+	-fx-border-width: 1;
+ 	-fx-border-insets: 0 0 0 10;
+ 	/*
+	-fx-border-width: 1;
+ 	-fx-padding: 5 0 0 0;
+	-fx-border-color: cyan;
+ 	*/
+ 	-fx-border-color: transparent;
+}
+
+.eplatformfx-form-panel-group {
+	/*
+	-fx-border-color: red;
+	*/
+}
+
+
+.eplatformfx-form-panel-label {
+	-fx-padding: 4 0 0 0;
+	-fx-font-weight: bold;
+	-fx-text-fill: -fx-text-wkscmp-title-color
+}
+
+/*
+ * Header
+ */
+
+/*
+.custom-app-window-decorator #resize-rectangle {
+	-fx-background-image: url("/images/fractal_header.png");
+	-fx-background-repeat: stretch;
+	-fx-background-color: linear-gradient(from 0px 0px to 0px 81px, white, #f2f2f2 0%, #cccccc 99%, white);
+}
+
+.custom-app-window-decorator #root {
+	-fx-background-color: transparent;
+}
+
+.custom-app-window-decorator #background-panel {
+	-fx-background-color: transparent;
+	-fx-padding: 0 0 0 0;
+	-fx-min-height: 81;
+	-fx-max-height: 81;
+}
+
+.custom-app-window-decorator #title {
+	-fx-background-color: transparent;
+}
+
+/*
+.custom-app-window-decorator #close{
+	-fx-graphic: null;
+	-fx-background-image: url("/images/logout_off.png");
+	-fx-background-size: 25px 25px;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center 22px;
+    -fx-background-radius: 0;
+    -fx-background-color: null;
+    -fx-padding: 54 0 0 0;
+    -fx-min-width: 70;
+    -fx-border-style: null;
+    -fx-content-display: text-only;
+    -fx-font: bold 14px 'Neo Sans';
+    -fx-text-fill: #6E6E6E;
+    -fx-text-alignment: center;
+}
+
+.custom-app-window-decorator #close:hover{
+	-fx-graphic: null;
+	-fx-background-image: url("/images/logout_on.png");
+    -fx-background-color: null;
+    -fx-text-fill: #00AAC8;
+}
+*/
+
+/*
+.custom-app-window-decorator #title{
+	-fx-font: bold 26px 'Neo Sans';
+	-fx-padding: 6 0 0 25;
+}
+
+.custom-app-window-decorator #title-0{
+	-fx-font: normal 14px 'Neo Sans Light TR';
+	-fx-padding: 48 0 0 25;
+	-fx-text-fill: white;
+}
+
+.custom-app-window-decorator #title-1{
+	-fx-font: normal 14px 'Neo Sans Light TR';
+	-fx-padding: 48 0 0 58;
+	-fx-text-fill: #1a1a1a;
+}
+*/
+.cell-left-align{
+    -fx-alignment: TOP-LEFT;
+}
+
+.cell-center-align{
+    -fx-alignment: TOP-CENTER;
+}
+
+.cell-right-align{
+    -fx-alignment: TOP-RIGHT;
+}
+
+.vbox-margins {
+    -fx-padding: 5px;
+    -fx-background-insets: 10px;
+}
+
+.editor-style {
+    -fx-padding: 5px 0px 5px 0px;
+    -fx-spacing: 4px;
+    -fx-alignment: TOP-RIGHT;
+}
+
+.custom-text-field:focused {
+   -fx-background-color: linear-gradient(#ffffff, #e8f5fc);
+   -fx-border-insets: 5;
+   -fx-border-width: 1;
+   -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
+}
+
+.table-row-cell:selected {
+   -fx-background-color: steelblue;
+}
+
+
+/** Header */
+
+/*
+.custom-app-window-decorator #resize-rectangle {
+	-fx-background-image: url("/images/fractal_header.png");
+	-fx-background-repeat: stretch;
+	-fx-background-color: linear-gradient(from 0px 0px to 0px 81px, white, #f2f2f2 0%, #cccccc 99%, white);
+} */
+
+.custom-app-window-decorator #root {
+	-fx-background-color: transparent;
+}
+
+
+.custom-app-window-decorator #background-panel {
+	-fx-background-color: transparent;
+	-fx-padding: 0 0 0 0;
+	-fx-min-height: 35;
+	/*
+	-fx-min-height: 81;
+	-fx-max-height: 81;
+	*/
+}
+
+
+.custom-app-window-decorator #title {
+	-fx-background-color: transparent;
+}
+
+.custom-app-window-decorator #title {
+	-fx-font: bold 16px 'Neo Sans';
+	-fx-padding: 6 0 0 6;
+}
+
+
+/*
+.custom-app-window-decorator #title {
+	-fx-font: bold 26px 'Neo Sans';
+	-fx-padding: 6 0 0 25;
+}
+
+.custom-app-window-decorator #title-0 {
+	-fx-font: normal 14px 'Neo Sans Light TR';
+	-fx-padding: 48 0 0 25;
+	-fx-text-fill: white;
+}
+
+.custom-app-window-decorator #title-1 {
+	-fx-font: normal 14px 'Neo Sans Light TR';
+	-fx-padding: 48 0 0 58;
+	-fx-text-fill: #1a1a1a;
+}
+*/
+
+
+.eplatformfx-dashboard-wks-btn {
+	-fx-background-color:
+        #090a0c,
+        linear-gradient(#38424b 0%, #1f2429 20%, #191d22 100%),
+        linear-gradient(#20262b, #191d22),
+        radial-gradient(center 50% 0%, radius 100%, rgba(114,131,148,0.9), rgba(255,255,255,0));
+    -fx-background-radius: 5,4,3,5;
+    -fx-background-insets: 0,1,2,0;
+    -fx-text-fill: lightgray;
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
+    -fx-padding: 10 20 10 20;
+    -fx-font: bold 14px 'Neo Sans';
+    -fx-wrap-text: true;
+    -fx-alignment: baseline-center;
+    -fx-graphic-text-gap: 10;
+    -fx-content-display: top;
+    -fx-text-alignment: center;
+}
+
+.eplatformfx-dashboard-wks-btn:hover {
+    -fx-background-color:
+        linear-gradient(from 0% 93% to 0% 100%, #a34313 0%, #903b12 100%),
+        #9d4024,
+        #d86e3a,
+        radial-gradient(center 50% 50%, radius 100%, #ea7f4b, #c54e2c);
+}

@@ -1,0 +1,253 @@
+<extensions>
+
+	<actionsRegistryExtension extension-point-id="app-main-actions">
+		<action id="rpa102.action.newFirstHourDelayEntry">
+			<property class="org.elyeva.rpa102.cltfx.firsthourdelay.NewFirstHourDelayEntryAction"/>
+		</action>
+
+		<action id="rpa102.action.newSchoolReport">
+			<property class="org.elyeva.rpa102.cltfx.classroominc.NewClassroomIncidenceAction"/>
+		</action>
+
+		<action id="rpa102.action.newBreakTimeStay">
+			<property class="org.elyeva.rpa102.cltfx.breaktimestays.NewBreakTimeStaysAction"/>
+		</action>
+
+		<action id="rpa102.action.sendSMS">
+			<property class="es.indra.eplatformfx.app.actions.NewDialogAction"/>
+			<property dialogContentClass="org.elyeva.rpa102.cltfx.sms.SmsDialogContent"/>
+			<property text="Envio de SMS"/>
+		</action>
+
+		<action id="rpa102.action.excelExport">
+			<property class="es.indra.eplatformfx.data.ui.actions.ExportToExcelXlsDataCollectionWksCmpAction"/>
+			<property text="Exportar a Excel"/>
+		</action>
+
+	</actionsRegistryExtension>
+
+
+	<!--
+	<import resource="/META-INF/config/mytracker-base-extensions.xml"/>
+	 -->
+
+	<!-- Defines application main menu -->
+	<menuDefinitionExtension extension-point-id="app-main-menu">
+		<menu id="app.file" text="Archivo">
+			<menuItem id="Salir" class="es.indra.eplatformfx.app.actions.ExitAction" pos="100"/>
+		</menu>
+
+		<menu id="rpa102.firstHourDelay" text="Retraso 1ª Hora">
+ 				<menuItem actionId="rpa102.action.newFirstHourDelayEntry"/>
+
+			<menuItem id="rpa102.showFirstHourDelayWks"
+				text="Consulta Retrasos Primera Hora "
+				class="es.indra.eplatformfx.app.actions.ShowWksExtPointAction"
+				wksExtPointId="rpa102-wks-repository"
+				wksId="wksfirstHourDelay"/>
+		</menu>
+
+		<menu id="rpa102.ClassroomIncidences" text="Partes de Aula">
+			<menuItem actionId="rpa102.action.newSchoolReport"/>
+
+			<menuItem id="rpa102.showClassroomIncidencesWks"
+				text="Consulta Partes de Aula"
+				class="es.indra.eplatformfx.app.actions.ShowWksExtPointAction"
+				wksExtPointId="rpa102-wks-repository"
+				wksId="wksClassroomIncidences"/>
+		</menu>
+
+		<menu id="rpa102.BreakTimeStays" text="Recreos">
+			<menuItem actionId="rpa102.action.newBreakTimeStay"/>
+
+			<menuItem id="rpa102.showBreakTimeStaysWks"
+				text="Consulta de Estancias en Recreos"
+				class="es.indra.eplatformfx.app.actions.ShowWksExtPointAction"
+				wksExtPointId="rpa102-wks-repository"
+				wksId="wksBreakTimeStays"/>
+		</menu>
+
+		<menu id="rpa.sms" pos="990" text="SMS">
+			<menuItem actionId="rpa102.action.sendSMS"/>
+		</menu>
+		<menu id="rpa.admin" pos="990" text="Administración" permissionId="Admin">
+			<menuItem id="rpa102.showDataMaintenance"
+					text="Mantenimiento de Datos"
+					class="es.indra.eplatformfx.app.actions.ShowWksExtPointAction"
+					wksExtPointId="rpa102-wks-repository"
+					wksId="wksPathOrientedDataMgmt"
+					permissionId="Admin"/>
+
+		</menu>
+		<dynamicMenu id="app-main-menu.windows" pos="1000" text="Windows"
+				class="es.indra.eplatformfx.app.actions.WindowsDynamicMenuBuilder"/>
+
+	</menuDefinitionExtension>
+
+	<!-- Defines the workspaces to be added to the application -->
+	<workspaceExtension extension-point-id="app-main-workspaces">
+		<workspace id="wksDashboard" isDefaultWks="true"
+					title="Inicio"
+					class="es.indra.eplatformfx.app.xtras.wks.DashboardWks">
+			<workspaceComponent id="firstHourDelayTable"
+				class="es.indra.eplatformfx.app.xtras.wks.ButtonDashboardWksCmp"
+				actionId="rpa102.action.newFirstHourDelayEntry"
+				permissionId="FirstHourDelay.NewEntry">
+			</workspaceComponent>
+			<workspaceComponent id="newSchoolReport"
+				class="es.indra.eplatformfx.app.xtras.wks.ButtonDashboardWksCmp"
+				actionId="rpa102.action.newSchoolReport"
+				permissionId="ClassroomIncidence.NewEntry">
+			</workspaceComponent>
+			<workspaceComponent id="newBreakTimeStay"
+				class="es.indra.eplatformfx.app.xtras.wks.ButtonDashboardWksCmp"
+				actionId="rpa102.action.newBreakTimeStay"
+				permissionId="BreakTimeStays.NewEntry">
+			</workspaceComponent>
+		</workspace>
+	</workspaceExtension>
+
+
+		<!-- Defines the workspaces to be added to the application -->
+	<workspaceExtension extension-point-id="rpa102-wks-repository">
+
+		<workspace id="wksfirstHourDelay"
+				type="wksfirstHourDelay"
+				title="Retrasos Primera Hora"
+				permissionId="FirstHourDelay.queryWks">
+
+			<workspaceListeners>
+				<workspaceListener
+						class="es.indra.eplatformfx.data.wks.DataSourceContextLoaderWksListener"
+						dataSourceId="ds01"/>
+			</workspaceListeners>
+
+			<workspaceComponent id="firstHourDelayTable"
+				title="Consulta Retrasos Primera Hora"
+				class="es.indra.eplatformfx.data.ui.wkscmp.QueryDataCollectionWithFilterWksCmp"
+				queryId="queryFirstHourDelay"
+				layoutConstRelativePosition="ROOT">
+
+				<menuDefinition>
+					<menuItem actionId="rpa102.action.newFirstHourDelayEntry"/>"
+					<menuSeparator/>
+					<menuItem actionId="rpa102.action.excelExport"/>"
+
+					<!--
+					<menuItem id="EditEntityAction"
+						text="Edit"
+						class="es.indra.eplatformfx.data.ui.actions.EditSelectedEntityAction"/>
+					<menuItem id="DeleteEntityAction"
+						text="Delete"
+						class="es.indra.eplatformfx.data.ui.actions.DeleteSelectedEntityAction"/>
+ 					-->
+				</menuDefinition>
+
+			</workspaceComponent>
+		</workspace>
+
+		<workspace id="wksClassroomIncidences"
+				type="wksClassroomIncidences"
+				title="Partes de Aula"
+				permissionId="ClassroomIncidence.queryWks">
+
+			<workspaceListeners>
+				<workspaceListener
+						class="es.indra.eplatformfx.data.wks.DataSourceContextLoaderWksListener"
+						dataSourceId="ds01"/>
+			</workspaceListeners>
+
+			<workspaceComponent id="wkscmpClassroomIncidences"
+				title="Consulta Partes de Aula"
+				class="es.indra.eplatformfx.data.ui.wkscmp.QueryDataCollectionWithFilterWksCmp"
+				queryId="queryClassRoomIncidences"
+				layoutConstRelativePosition="ROOT">
+
+				<menuDefinition>
+					<menuItem actionId="rpa102.action.newSchoolReport"/>"
+					<menuSeparator/>
+					<menuItem actionId="rpa102.action.excelExport"/>"
+				</menuDefinition>
+			</workspaceComponent>
+		</workspace>
+
+		<workspace id="wksBreakTimeStays"
+				type="wksBreakTimeStays"
+				title="Consulta de Estancias en Recreos"
+				permissionId="BreakTimeStays.queryWks">
+
+			<workspaceListeners>
+				<workspaceListener
+						class="es.indra.eplatformfx.data.wks.DataSourceContextLoaderWksListener"
+						dataSourceId="ds01"/>
+			</workspaceListeners>
+
+			<workspaceComponent id="wkscmpBreakTimeStays"
+				title="Consulta Recreos"
+				class="es.indra.eplatformfx.data.ui.wkscmp.QueryDataCollectionWithFilterWksCmp"
+				queryId="queryBreakTimeStays"
+				layoutConstRelativePosition="ROOT">
+
+				<menuDefinition>
+					<menuItem actionId="rpa102.action.newBreakTimeStay"/>"
+					<menuSeparator/>
+					<menuItem actionId="rpa102.action.excelExport"/>"
+				</menuDefinition>
+
+			</workspaceComponent>
+		</workspace>
+
+		<workspace id="wksPathOrientedDataMgmt"
+				title="Path Oriented Data Management"
+				permissionId="Admin">
+
+			<workspaceListeners>
+				<workspaceListener
+						class="es.indra.eplatformfx.data.wks.DataSourceContextLoaderWksListener"
+						dataSourceId="ds01"/>
+			</workspaceListeners>
+
+			<workspaceComponent id="wkscmp-paths"
+				title="Paths"
+				class="es.indra.eplatformfx.data.ui.wkscmp.PathTreeWksCmp"
+				layoutConstRelativeSize="10">
+			</workspaceComponent>
+			<workspaceComponent id="wkscmp-pager"
+				title="Pager"
+				class="es.indra.eplatformfx.app.wkscmp.WorkspaceComponentPager"
+				layoutConstRelativePosition="RIGHT"
+				layoutConstRelativeTo="wkscmp-paths">
+
+				<workspaceComponentPages>
+					<workspaceComponent id="wkscmp-page-1"
+						class="es.indra.eplatformfx.data.ui.wkscmp.DataCollectionPageWksCmp">
+
+						<menuDefinition>
+							<menuItem id="NewEntityAction" text="New"
+								class="es.indra.eplatformfx.data.ui.actions.NewEntityAction" />
+							<menuItem id="EditEntityAction" text="Edit"
+								class="es.indra.eplatformfx.data.ui.actions.EditSelectedEntityAction" />
+							<menuItem id="DeleteEntityAction" text="Delete"
+								class="es.indra.eplatformfx.data.ui.actions.DeleteSelectedEntityAction" />
+						</menuDefinition>
+					</workspaceComponent>
+
+					<workspaceComponent id="wkscmp-page-2"
+						class="es.indra.eplatformfx.data.ui.wkscmp.FormPanelPageWksCmp">
+						<menuDefinition>
+							<menuItem id="EditEntityAction" text="Edit"
+								class="es.indra.eplatformfx.data.ui.actions.EditSelectedEntityAction" />
+							<menuItem id="DeleteEntityAction" text="Delete"
+								class="es.indra.eplatformfx.data.ui.actions.DeleteSelectedEntityAction" />
+						</menuDefinition>
+					</workspaceComponent>
+				</workspaceComponentPages>
+
+				<properties>
+					<property selectionHandlerKey="defaultSelectionHandlerId"/>
+				</properties>
+			</workspaceComponent>
+		</workspace>
+	</workspaceExtension>
+
+</extensions>

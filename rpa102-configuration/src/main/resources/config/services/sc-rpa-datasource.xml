@@ -1,0 +1,720 @@
+<datasources>
+	<datasource-definitions>
+		<datasource-definition id="ds01"
+				class="es.indra.eplatform.data.datasources.sql.derby.DerbyDbDataSource">
+			<properties>
+				<property cached="true"/>
+				<property jdbcDriverClass="${db.jdbcDriverClass}"/>
+				<property jdbcURL="${db.jdbcURL}"/>
+			</properties>
+		</datasource-definition>
+	</datasource-definitions>
+
+	<datasource-context dataSourceId="ds01">
+		<metadata>
+			<queries>
+				<query id="queryFirstHourDelay">
+					<queryTables>
+						<queryTable alias="A" name="FIRST_HOUR_DELAY_ENTRIES">
+							<queryIncludeAllColumns/>
+						</queryTable>
+						<queryTable alias="B" name="STUDENTS_BY_ACADEMIC_YEAR"/>
+						<queryTable alias="C" name="COURSES">
+							<queryColumn name="GROUP_ID"/>
+						</queryTable>
+					</queryTables>
+					<queryJoins>
+						<queryJoin source="A" target="B">
+							<queryAttrRelation source="ACADEMIC_YEAR_ID" target="ACADEMIC_YEAR_ID"/>
+							<queryAttrRelation source="STUDENT_ID" target="STUDENT_ID"/>
+						</queryJoin>
+						<queryJoin source="B" target="C">
+							<queryAttrRelation source="COURSE_ID" target="ID"/>
+						</queryJoin>
+					</queryJoins>
+				</query>
+
+				<query id="queryClassRoomIncidences">
+					<queryTables>
+						<queryTable alias="A" name="CLASSROOM_INCIDENCES">
+							<queryIncludeAllColumns/>
+						</queryTable>
+						<queryTable alias="B" name="STUDENTS_BY_ACADEMIC_YEAR"/>
+						<queryTable alias="C" name="COURSES">
+							<queryColumn name="GROUP_ID"/>
+						</queryTable>
+					</queryTables>
+					<queryJoins>
+						<queryJoin source="A" target="B">
+							<queryAttrRelation source="ACADEMIC_YEAR_ID" target="ACADEMIC_YEAR_ID"/>
+							<queryAttrRelation source="STUDENT_ID" target="STUDENT_ID"/>
+						</queryJoin>
+						<queryJoin source="B" target="C">
+							<queryAttrRelation source="COURSE_ID" target="ID"/>
+						</queryJoin>
+					</queryJoins>
+				</query>
+
+				<query id="queryBreakTimeStays">
+					<queryTables>
+						<queryTable alias="A" name="BREAK_TIME_STAYS">
+							<queryIncludeAllColumns/>
+						</queryTable>
+						<queryTable alias="B" name="STUDENTS_BY_ACADEMIC_YEAR"/>
+						<queryTable alias="C" name="COURSES">
+							<queryColumn name="GROUP_ID"/>
+						</queryTable>
+					</queryTables>
+					<queryJoins>
+						<queryJoin source="A" target="B">
+							<queryAttrRelation source="ACADEMIC_YEAR_ID" target="ACADEMIC_YEAR_ID"/>
+							<queryAttrRelation source="STUDENT_ID" target="STUDENT_ID"/>
+						</queryJoin>
+						<queryJoin source="B" target="C">
+							<queryAttrRelation source="COURSE_ID" target="ID"/>
+						</queryJoin>
+					</queryJoins>
+				</query>
+			</queries>
+		</metadata>
+
+		<paths>
+			<path id="default">
+				<!--  -->
+				<path-node tableName="TEACHERS" />
+				<path-node tableName="TEACHERS_BY_ACADEMIC_YEAR" />
+				<path-node tableName="STUDENTS" />
+				<path-node tableName="STUDENTS_BY_ACADEMIC_YEAR" />
+				<path-node tableName="ACADEMIC_YEARS" />
+				<path-node tableName="CONFIG" />
+				<path-node tableName="COURSES" />
+				<path-node tableName="FIRST_HOUR_DELAY_ENTRIES" />
+				<path-node tableName="CLASSROOM_INCIDENCES" />
+				<path-node tableName="BREAK_TIME_STAYS" />
+				<path-node tableName="SMS" />
+			</path>
+
+			<path id="by-year">
+				<path-node tableName="ACADEMIC_YEARS" />
+				<path-node tableName="TEACHERS_BY_ACADEMIC_YEAR" />
+				<path-node tableName="STUDENTS_BY_ACADEMIC_YEAR" />
+				<path-node tableName="COURSES" />
+
+				<relation source="TEACHERS_BY_ACADEMIC_YEAR" target="ACADEMIC_YEARS">
+					<attrRelation source="ACADEMIC_YEAR_ID" target="ID" />
+				</relation>
+
+				<relation source="STUDENTS_BY_ACADEMIC_YEAR" target="ACADEMIC_YEARS">
+					<attrRelation source="ACADEMIC_YEAR_ID" target="ID" />
+				</relation>
+			</path>
+
+			<path id="security">
+				<path-node tableName="ROLES" />
+				<path-node tableName="PERMISSIONS" />
+				<path-node tableName="USERS" />
+				<path-node tableName="ROLE_PERMISSION" />
+				<path-node tableName="USER_ROLE" />
+			</path>
+		</paths>
+
+		<uimetadata autocreate="true">
+			<uihandler-catalog>
+				<uihandler id="uihandler-AcademicYearsDefaultValue"
+						class="org.elyeva.rpa102.cltfx.metadata.columnhandlers.AcademicYearUIColumnHandler"
+						relatedEntityType="ACADEMIC_YEARS"
+						text="Año Academico"
+						formSize="long"/>
+
+				<!--
+				class="org.elyeva.rpa102.cltfx.metadata.columnhandlers.AcademicYearColumnHandler"
+				class="es.indra.eplatformfx.data.ui.metadata.columnhandlers.EntitySelectorComboColumnHandler"
+				class="es.indra.eplatformfx.data.ui.metadata.columnhandlers.DataCollectionComboColumnHandler"
+				 -->
+
+				<uihandler id="uihandler-AcademicYears"
+						class="es.indra.eplatformfx.data.ui.metadata.columnhandlers.DataCollectionCmbUIColumnHandler"
+						relatedEntityType="ACADEMIC_YEARS"
+						text="Año Academico"
+						formSize="long"/>
+
+				<uihandler id="uihandler-Students"
+						class="es.indra.eplatformfx.data.ui.metadata.columnhandlers.DataCollectionCmbUIColumnHandler"
+						relatedEntityType="STUDENTS"
+						text="Alumno"
+						formSize="long"/>
+
+				<uihandler id="uihandler-CurrentYearStudents"
+						class="es.indra.eplatformfx.data.ui.metadata.columnhandlers.DataCollectionCmbUIColumnHandler"
+						relatedEntityType="STUDENTS_BY_ACADEMIC_YEAR"
+						valueColumn="STUDENT_ID"
+						filter="ACADEMIC_YEAR_ID='#{column:ACADEMIC_YEAR_ID}'"
+						text="Alumno"
+						formSize="long"/>
+
+				<!--
+				filter="ACADEMIC_YEAR_ID='#{column:ACADEMIC_YEAR_ID}'"
+				class="es.indra.eplatformfx.data.ui.metadata.columnhandlers.EntitySelectorCmbUIColumnHandler"
+				class="es.indra.eplatformfx.data.ui.metadata.columnhandlers.DataCollectionCmbUIColumnHandler"
+				 -->
+
+				<uihandler id="uihandler-Teachers"
+						class="org.elyeva.rpa102.cltfx.metadata.columnhandlers.TeacherCollectionCmbUIColumnHandler"
+						relatedEntityType="TEACHERS"
+						text="Profesor"
+						formSize="long"/>
+
+				<uihandler id="uihandler-ActiveTeachers"
+						class="org.elyeva.rpa102.cltfx.metadata.columnhandlers.TeacherCollectionCmbUIColumnHandler"
+						relatedEntityType="TEACHERS"
+						valueColumn="ID"
+						filter="ACTIVE='TRUE'"
+						text="Profesor"
+						formSize="long"/>
+
+				<!--
+				class="es.indra.eplatformfx.data.ui.metadata.columnhandlers.EntitySelectorComboColumnHandler"
+				class="org.elyeva.rpa102.cltfx.metadata.columnhandlers.TeacherCollectionComboColumnHandler"
+				 -->
+
+				<uihandler id="uihandler-Cursos"
+						class="es.indra.eplatformfx.data.ui.metadata.columnhandlers.DataCollectionCmbUIColumnHandler"
+						relatedEntityType="COURSES"
+						text="Curso"/>
+
+				<uihandler id="uihandler-SmsSenderColumn"
+						class="org.elyeva.rpa102.cltfx.metadata.columnhandlers.SmsUIColumnHandler"/>
+
+			</uihandler-catalog>
+			<uitables>
+				<uitable name="SMS" descColumn="SMS">
+					<uicolumns>
+						<uicolumn order="10" name="MSG_ID">
+							<properties>
+								<property text="Id"/>
+								<property displaySize="100"/>
+								<property formSize="medium"/>
+							</properties>
+						</uicolumn>
+						<uicolumn order="20" name="FROM_TEXT">
+							<properties>
+								<property text="Texto Desde"/>
+								<property displaySize="180"/>
+								<property formSize="long"/>
+							</properties>
+						</uicolumn>
+						<uicolumn order="30" name="DEST_PHONE">
+							<properties>
+								<property text="Teléfono Destino"/>
+								<property displaySize="100"/>
+								<property formSize="medium"/>
+							</properties>
+						</uicolumn>
+						<uicolumn order="40" name="SENT_STATE">
+							<properties>
+								<property text="Estado del Envio"/>
+								<property displaySize="100"/>
+								<property formSize="Short"/>
+							</properties>
+						</uicolumn>
+						<uicolumn order="50" name="MSG_TEXT">
+							<properties>
+								<property text="Texto"/>
+								<property displaySize="300"/>
+								<property formSize="long"/>
+							</properties>
+						</uicolumn>
+						<uicolumn order="60" name="REFERENCED_ELEMENT">
+							<properties>
+								<property text="Elemento Relacionado"/>
+								<property displaySize="200"/>
+								<property formSize="medium"/>
+							</properties>
+						</uicolumn>
+					</uicolumns>
+
+					<form-editor-panel>
+						<property groups="1"/>
+						<property minSize="400,200"/>
+					</form-editor-panel>
+				</uitable>
+
+				<uitable name="ACADEMIC_YEARS" descColumn="DESCRIPTION">
+					<uicolumns>
+						<uicolumn order="10" name="ID">
+							<properties>
+								<property text="Id"/>
+								<property displaySize="100"/>
+								<property formSize="medium"/>
+							</properties>
+						</uicolumn>
+						<uicolumn order="20" name="DESCRIPTION">
+							<properties>
+								<property text="Description"/>
+								<property displaySize="200"/>
+								<property formSize="long"/>
+								<property filterType="equal"/>
+							</properties>
+						</uicolumn>
+					</uicolumns>
+
+					<form-editor-panel>
+						<property groups="1"/>
+						<property minSize="400,200"/>
+					</form-editor-panel>
+				</uitable>
+
+				<uitable name="COURSES" descColumn="GROUP_ID">
+					<uicolumn name="ID"/>
+					<uicolumn name="GROUP_ID">
+						<properties>
+							<property text="Grupo"/>
+						</properties>
+					</uicolumn>
+				</uitable>
+
+				<!--  -->
+				<uitable name="FIRST_HOUR_DELAY_ENTRIES" desc="Retraso a Primera Hora">
+					<uicolumns>
+						<uicolumn order="5" name="ACADEMIC_YEAR_ID">
+							<properties>
+								<property editable="false"/>
+								<property formSize="long"/>
+								<property formExpGroups="2"/>
+								<property filterType="equal"/>
+							</properties>
+
+							<uihandler id="uihandler-AcademicYearsDefaultValue"/>
+						</uicolumn>
+
+						<uicolumn order="10" name="DATE">
+							<properties>
+								<property text="Fecha"/>
+								<property displaySize="100"/>
+								<property defaultValue="now"/>
+								<property filterDefaultValue="now"/>
+								<property filterType="between"/>
+								<property formSize="long"/>
+							</properties>
+						</uicolumn>
+
+						<uicolumn order="20" name="ARRIVAL_TIME">
+							<properties>
+								<property text="Hora Llegada"/>
+								<property displaySize="100"/>
+								<property defaultValue="now"/>
+								<property formSize="medium"/>
+								<property formGroup="2"/>
+							</properties>
+						</uicolumn>
+
+						<uicolumn order="30" name="TEACHER_ID">
+							<properties>
+								<property filterType="equal"/>
+								<property formSize="long"/>
+							</properties>
+							<uihandler id="uihandler-ActiveTeachers" initWithLoggedTeacher="true"/>
+						</uicolumn>
+
+						<uicolumn order="40" name="STUDENT_ID">
+							<properties>
+								<property filterType="equal"/>
+								<property formSize="long"/>
+							</properties>
+							<uihandler id="uihandler-CurrentYearStudents"/>
+						</uicolumn>
+
+						<!-- virtual column -->
+						<uicolumn order="50" name="SMS_NOTIFICATION">
+							<properties>
+								<property text="Notificación por SMS"/>
+								<property visibleOnEdit="false"/>
+								<property visibleOnQuery="false"/>
+							</properties>
+							<uihandler id="uihandler-SmsSenderColumn"/>
+						</uicolumn>
+
+					</uicolumns>
+					<search-panel-properties>
+						<property groups="3"/>
+						<property minSize="300,80"/>
+					</search-panel-properties>
+					<form-editor-panel>
+						<property class="org.elyeva.rpa102.cltfx.firsthourdelay.FirstHourDelayEditorPanel"/>
+						<property groups="2"/>
+						<property minWidth="320"/>
+					</form-editor-panel>
+				</uitable>
+
+				<!--  -->
+				<uitable name="CLASSROOM_INCIDENCES" desc="Partes de Aula">
+					<uicolumns>
+						<uicolumn order="5" name="ACADEMIC_YEAR_ID">
+							<properties>
+								<property editable="false"/>
+								<property formSize="long"/>
+								<property formExpGroups="2"/>
+								<property filterType="equal"/>
+							</properties>
+
+							<uihandler id="uihandler-AcademicYearsDefaultValue"/>
+						</uicolumn>
+
+						<uicolumn order="10" name="DATE">
+							<properties>
+								<property text="Fecha"/>
+								<property displaySize="100"/>
+								<property defaultValue="now"/>
+								<property filterDefaultValue="now"/>
+								<property filterType="between"/>
+								<property formSize="long"/>
+							</properties>
+						</uicolumn>
+
+						<uicolumn order="20" name="ARRIVAL_TIME">
+							<properties>
+								<property text="Hora Llegada"/>
+								<property displaySize="100"/>
+								<property defaultValue="now"/>
+								<property formSize="long"/>
+								<property formGroup="2"/>
+							</properties>
+						</uicolumn>
+
+						<uicolumn order="30" name="TEACHER_ID">
+							<properties>
+								<property filterType="equal"/>
+								<property formSize="long"/>
+							</properties>
+							<uihandler id="uihandler-ActiveTeachers" initWithLoggedTeacher="true"/>
+						</uicolumn>
+
+						<uicolumn order="40" name="STUDENT_ID">
+							<properties>
+								<property filterType="equal"/>
+								<property formSize="long"/>
+							</properties>
+							<uihandler id="uihandler-CurrentYearStudents"/>
+						</uicolumn>
+
+						<uicolumn order="60" name="SCHOOL_MGMT_ORDER_CAUSE">
+							<properties>
+								<property text="Orden Dirección"/>
+								<property formSize="medium"/>
+								<property formGroup="1"/>
+							</properties>
+						</uicolumn>
+
+						<uicolumn order="63" name="USE_OF_MOBILE_CAUSE">
+							<properties>
+								<property text="Uso Movil"/>
+								<property formSize="medium"/>
+								<property formGroup="2"/>
+							</properties>
+						</uicolumn>
+
+						<uicolumn order="66" name="BREAK_MATERIAL_CAUSE">
+							<properties>
+								<property text="Rotura Material"/>
+								<property formSize="medium"/>
+								<property formGroup="3"/>
+							</properties>
+						</uicolumn>
+
+						<uicolumn order="70" name="LACK_OF_RESPECT_CAUSE">
+							<properties>
+								<property text="Perdida Respeto"/>
+								<property formSize="medium"/>
+								<property formGroup="1"/>
+							</properties>
+						</uicolumn>
+
+						<uicolumn order="73" name="GO_OUT_FROM_SCHOOL_CAUSE">
+							<properties>
+							<property text="Abandono del centro"/>
+								<property formSize="medium"/>
+								<property formGroup="2"/>
+							</properties>
+						</uicolumn>
+
+						<uicolumn order="76" name="DISTURB_CAUSE">
+							<properties>
+								<property text="Molestar en clase"/>
+								<property formSize="medium"/>
+								<property formGroup="3"/>
+							</properties>
+						</uicolumn>
+
+						<uicolumn order="80" name="BREACH_OF_ORDER_CAUSE">
+							<properties>
+								<property text="Incumplimiento Sanción"/>
+								<property formSize="medium"/>
+								<property formGroup="1"/>
+							</properties>
+						</uicolumn>
+
+						<uicolumn order="83" name="INTERRUPT_TEACHER_EXPLANATION_CAUSE">
+							<properties>
+								<property text="Interrumpir al Profesor"/>
+								<property formSize="medium"/>
+								<property formGroup="2"/>
+							</properties>
+						</uicolumn>
+
+						<uicolumn order="86" name="TO_NOT_WORK_CAUSE">
+							<properties>
+								<property text="No Trabajar"/>
+								<property formSize="medium"/>
+								<property formGroup="3"/>
+							</properties>
+						</uicolumn>
+
+						<uicolumn order="90" name="SMOKE_CAUSE">
+							<properties>
+								<property text="Fumar"/>
+								<property formSize="medium"/>
+								<property formGroup="1"/>
+							</properties>
+						</uicolumn>
+
+						<uicolumn order="93" name="HIT_OTHER_STUDENT_CAUSE">
+							<properties>
+								<property text="Golpear a Compañero"/>
+								<property formSize="medium"/>
+								<property formGroup="2"/>
+							</properties>
+						</uicolumn>
+
+						<uicolumn order="96" name="OTHER_CAUSE">
+							<properties>
+								<property text="Otros"/>
+								<property formSize="medium"/>
+								<property formGroup="3"/>
+							</properties>
+						</uicolumn>
+
+						<!-- virtual column
+						<uicolumn order="150" name="SMS_NOTIFICATION">
+							<properties>
+								<property text="Notificación por SMS"/>
+								<property visibleOnEdit="false"/>
+								<property visibleOnQuery="false"/>
+							</properties>
+							<uihandler id="uihandler-SmsSenderColumn"/>
+						</uicolumn>
+						-->
+					</uicolumns>
+					<search-panel-properties>
+						<property groups="3"/>
+						<property minSize="300,80"/>
+					</search-panel-properties>
+					<form-editor-panel>
+						<!--
+						<property class="org.elyeva.rpa102.cltfx.classroominc.ClassroomIncidenceEditorPanel"/>
+						 -->
+						<property groups="3"/>
+						<property minWidth="600"/>
+					</form-editor-panel>
+				</uitable>
+
+				<uitable name="TEACHERS" descColumn="NAME">
+					<!--
+					<uicolumn name="ID"/>
+					 -->
+					<uicolumn name="NAME">
+						<properties>
+							<property filterType="like"/>
+						</properties>
+					</uicolumn>
+				</uitable>
+
+				<uitable name="TEACHERS_BY_ACADEMIC_YEAR" descColumn="TEACHER_ID">
+					<uicolumn name="ACADEMIC_YEAR_ID" order="10">
+						<properties>
+							<property filterType="equal"/>
+						</properties>
+						<uihandler ID="uihandler-AcademicYearsDefaultValue"/>
+					</uicolumn>
+					<uicolumn name="TEACHER_ID" order="20">
+						<properties>
+							<property filterType="equal"/>
+						</properties>
+						<uihandler ID="uihandler-Teachers"/>
+					</uicolumn>
+				</uitable>
+
+				<uitable name="BREAK_TIME_STAYS" desc="Recreos">
+					<uicolumns>
+						<uicolumn order="5" name="ACADEMIC_YEAR_ID">
+							<properties>
+								<property editable="false"/>
+								<property formSize="long"/>
+								<property formExpGroups="2"/>
+								<property filterType="equal"/>
+							</properties>
+
+							<uihandler id="uihandler-AcademicYearsDefaultValue"/>
+						</uicolumn>
+						<uicolumn order="10" name="date">
+							<properties>
+								<property text="Fecha"/>
+								<property displaySize="100"/>
+								<property defaultValue="now"/>
+								<property filterDefaultValue="now"/>
+								<property filterType="between"/>
+								<property formSize="long"/>
+							</properties>
+						</uicolumn>
+						<uicolumn order="30" name="TEACHER_ID">
+							<properties>
+								<property filterType="equal"/>
+								<property formSize="long"/>
+							</properties>
+							<uihandler id="uihandler-ActiveTeachers" initWithLoggedTeacher="true"/>
+						</uicolumn>
+						<uicolumn order="40" name="STUDENT_ID">
+							<properties>
+								<property filterType="equal"/>
+								<property formSize="long"/>
+							</properties>
+							<uihandler id="uihandler-CurrentYearStudents"/>
+						</uicolumn>
+						<uicolumn order="53" name="FIRST_HOUR_DELAY_CAUSE">
+							<properties>
+								<property text="Retraso 1ª Hora"/>
+								<property displaySize="100"/>
+								<property defaultValue="now"/>
+								<property formSize="medium"/>
+								<property formGroup="1"/>
+							</properties>
+						</uicolumn>
+						<uicolumn order="56" name="SCHOOL_MGMT_ORDER_CAUSE">
+							<properties>
+								<property text="Orden Dirección"/>
+								<property displaySize="100"/>
+								<property defaultValue="now"/>
+								<property formSize="medium"/>
+								<property formGroup="2"/>
+							</properties>
+						</uicolumn>
+
+						<!-- virtual column
+						<uicolumn order="150" name="SMS_NOTIFICATION">
+							<properties>
+								<property text="Notificación por SMS"/>
+								<property visibleOnEdit="false"/>
+								<property visibleOnQuery="false"/>
+							</properties>
+							<uihandler id="uihandler-SmsSenderColumn"/>
+						</uicolumn>
+						-->
+					</uicolumns>
+					<search-panel-properties>
+						<property groups="3"/>
+						<property minSize="300,80"/>
+					</search-panel-properties>
+					<form-editor-panel>
+						<!--
+						<property class="org.elyeva.rpa102.cltfx.breaktimestays.BreakTimeStayEditorPanel"/>
+						 -->
+						<property groups="2"/>
+					</form-editor-panel>
+				</uitable>
+
+				<uitable name="STUDENTS" descColumn="NAME">
+					<!--
+					<uicolumn name="ID"/>
+					 -->
+					<uicolumn name="NAME"/>
+					<uicolumn name="PHONE_1"/>
+					<uicolumn name="PHONE_2"/>
+				</uitable>
+
+				<uitable name="STUDENTS_BY_ACADEMIC_YEAR" descColumn="STUDENT_ID">
+					<uicolumn name="ACADEMIC_YEAR_ID" order="10">
+						<uihandler id="uihandler-AcademicYearsDefaultValue"/>
+					</uicolumn>
+					<uicolumn name="STUDENT_ID"  order="20">
+						<uihandler id="uihandler-Students"/>
+					</uicolumn>
+					<uicolumn name="COURSE_ID"  order="30">
+						<properties>
+							<property filterType="equal"/>
+						</properties>
+						<uihandler id="uihandler-Cursos"/>
+					</uicolumn>
+				</uitable>
+
+				<uitable name="CONFIG" descColumn="PARAM_NAME">
+					<uicolumn name="PARAM_ID"/>
+					<uicolumn name="PARAM_NAME"/>
+					<uicolumn name="VALUE"/>
+
+					<form-editor-panel>
+						<property groups="1"/>
+					</form-editor-panel>
+				</uitable>
+
+				<!-- Security entities -->
+				<uitable name="ROLES" desc="Roles" descColumn="DESCRIPTION">
+				</uitable>
+
+				<uitable name="PERMISSIONS" desc="Permisos" descColumn="DESCRIPTION">
+				</uitable>
+
+				<uitable name="USERS" desc="Usuarios" descColumn="NAME">
+					<uicolumn name="PASSWORD">
+						<uihandler class="es.indra.eplatformfx.data.ui.metadata.columnhandlers.PasswordUIColumnHandler"/>
+					</uicolumn>
+					<uicolumn name="TEACHER_ID">
+						<uihandler id="uihandler-Teachers"/>
+					</uicolumn>
+				</uitable>
+
+				<uitable name="ROLE_PERMISSION" desc="Permisos por Rol">
+					<uicolumn name="ROLE_ID">
+						<uihandler class="es.indra.eplatformfx.data.ui.metadata.columnhandlers.DataCollectionCmbUIColumnHandler"
+							relatedEntityType="ROLES"
+							valueColumn="ROLE_ID"/>
+					</uicolumn>
+
+					<uicolumn name="PERMISSION_ID">
+						<uihandler class="es.indra.eplatformfx.data.ui.metadata.columnhandlers.DataCollectionCmbUIColumnHandler"
+							relatedEntityType="PERMISSIONS"
+							valueColumn="PERMISSION_ID"/>
+					</uicolumn>
+				</uitable>
+
+				<uitable name="USER_ROLE" desc="Roles por Usuario">
+					<uicolumn name="USER_ID">
+						<uihandler class="es.indra.eplatformfx.data.ui.metadata.columnhandlers.DataCollectionCmbUIColumnHandler"
+							relatedEntityType="USERS"
+							valueColumn="USER_ID"/>
+					</uicolumn>
+					<uicolumn name="ROLE_ID">
+						<uihandler class="es.indra.eplatformfx.data.ui.metadata.columnhandlers.DataCollectionCmbUIColumnHandler"
+							relatedEntityType="ROLES"
+							valueColumn="ROLE_ID"/>
+					</uicolumn>
+				</uitable>
+			</uitables>
+			<uiqueries>
+				<uiquery name="queryFirstHourDelay">
+					<search-panel-properties>
+						<property groups="3"/>
+					</search-panel-properties>
+				</uiquery>
+				<uiquery name="queryClassRoomIncidences">
+					<search-panel-properties>
+						<property groups="3"/>
+					</search-panel-properties>
+				</uiquery>
+				<uiquery name="queryFirstHourDelay">
+					<search-panel-properties>
+						<property groups="3"/>
+					</search-panel-properties>
+				</uiquery>
+			</uiqueries>
+		</uimetadata>
+	</datasource-context>
+</datasources>
