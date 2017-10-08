@@ -66,10 +66,19 @@
 				wksExtPointId="rpa102-wks-repository"
 				wksId="wksBreakTimeStays"/>
 		</menu>
+		<menu id="rpa.dataManagement" text="Mantenimiento de Datos" permissionId="DataManagement">
+			<menuItem id="rpa102.showDataMaintenance"
+					text="Mantenimiento de Datos"
+					class="es.indra.eplatformfx.app.actions.ShowWksExtPointAction"
+					wksExtPointId="rpa102-wks-repository"
+					wksId="wksDataMgmt"
+					permissionId="DataManagement"/>
 
+		</menu>
 		<menu id="rpa.sms" pos="990" text="SMS">
 			<menuItem actionId="rpa102.action.sendSMS"/>
 		</menu>
+		<!--
 		<menu id="rpa.admin" pos="990" text="Administración" permissionId="Admin">
 			<menuItem id="rpa102.showDataMaintenance"
 					text="Mantenimiento de Datos"
@@ -77,8 +86,8 @@
 					wksExtPointId="rpa102-wks-repository"
 					wksId="wksPathOrientedDataMgmt"
 					permissionId="Admin"/>
-
 		</menu>
+		-->
 		<dynamicMenu id="app-main-menu.windows" pos="1000" text="Windows"
 				class="es.indra.eplatformfx.app.actions.WindowsDynamicMenuBuilder"/>
 
@@ -190,6 +199,50 @@
 
 				<menuDefinition>
 					<menuItem actionId="rpa102.action.newBreakTimeStay"/>"
+					<menuSeparator/>
+					<menuItem actionId="rpa102.action.excelExport"/>"
+				</menuDefinition>
+
+			</workspaceComponent>
+		</workspace>
+
+		<workspace id="wksDataMgmt"
+				title="Mantenimiento de Datos"
+				permissionId="Admin">
+
+			<workspaceListeners>
+				<workspaceListener
+						class="es.indra.eplatformfx.data.wks.DataSourceContextLoaderWksListener"
+						dataSourceId="ds01"/>
+			</workspaceListeners>
+			<workspaceComponent id="wkscmp-entities-list"
+				title="Entidades"
+				class="es.indra.eplatformfx.data.ui.wkscmp.UIDataRowDefSelectionWksCmp"
+				layoutConstRelativePosition="ROOT"
+				layoutConstRelativeSize="20">
+				<properties>
+					<list-property key="entities">
+						<list-item value="STUDENTS"/>
+						<list-item value="STUDENTS_BY_ACADEMIC_YEAR"/>
+						<list-item value="TEACHERS"/>
+					</list-property>
+
+				</properties>
+			</workspaceComponent>
+			<workspaceComponent id="wkscmp-data-collection"
+				title="Entidades"
+				class="es.indra.eplatformfx.data.ui.wkscmp.DataCollectionWithFilterWksCmp"
+				layoutConstRelativePosition="RIGHT"
+				layoutConstRelativeTo="wkscmp-entities-list"
+				layoutConstRelativeSize="80">
+
+				<menuDefinition>
+					<menuItem id="NewEntityAction" text="New"
+						class="es.indra.eplatformfx.data.ui.actions.NewEntityAction" />
+					<menuItem id="EditEntityAction" text="Edit"
+						class="es.indra.eplatformfx.data.ui.actions.EditSelectedEntityAction" />
+					<menuItem id="DeleteEntityAction" text="Delete"
+						class="es.indra.eplatformfx.data.ui.actions.DeleteSelectedEntityAction" />
 					<menuSeparator/>
 					<menuItem actionId="rpa102.action.excelExport"/>"
 				</menuDefinition>

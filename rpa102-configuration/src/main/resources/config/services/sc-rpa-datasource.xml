@@ -20,7 +20,7 @@
 						</queryTable>
 						<queryTable alias="B" name="STUDENTS_BY_ACADEMIC_YEAR"/>
 						<queryTable alias="C" name="COURSES">
-							<queryColumn name="GROUP_ID"/>
+							<queryColumn name="DESCRIPTION"/>
 						</queryTable>
 					</queryTables>
 					<queryJoins>
@@ -41,7 +41,7 @@
 						</queryTable>
 						<queryTable alias="B" name="STUDENTS_BY_ACADEMIC_YEAR"/>
 						<queryTable alias="C" name="COURSES">
-							<queryColumn name="GROUP_ID"/>
+							<queryColumn name="DESCRIPTION"/>
 						</queryTable>
 					</queryTables>
 					<queryJoins>
@@ -62,7 +62,7 @@
 						</queryTable>
 						<queryTable alias="B" name="STUDENTS_BY_ACADEMIC_YEAR"/>
 						<queryTable alias="C" name="COURSES">
-							<queryColumn name="GROUP_ID"/>
+							<queryColumn name="DESCRIPTION"/>
 						</queryTable>
 					</queryTables>
 					<queryJoins>
@@ -82,7 +82,6 @@
 			<path id="default">
 				<!--  -->
 				<path-node tableName="TEACHERS" />
-				<path-node tableName="TEACHERS_BY_ACADEMIC_YEAR" />
 				<path-node tableName="STUDENTS" />
 				<path-node tableName="STUDENTS_BY_ACADEMIC_YEAR" />
 				<path-node tableName="ACADEMIC_YEARS" />
@@ -96,13 +95,8 @@
 
 			<path id="by-year">
 				<path-node tableName="ACADEMIC_YEARS" />
-				<path-node tableName="TEACHERS_BY_ACADEMIC_YEAR" />
 				<path-node tableName="STUDENTS_BY_ACADEMIC_YEAR" />
 				<path-node tableName="COURSES" />
-
-				<relation source="TEACHERS_BY_ACADEMIC_YEAR" target="ACADEMIC_YEARS">
-					<attrRelation source="ACADEMIC_YEAR_ID" target="ID" />
-				</relation>
 
 				<relation source="STUDENTS_BY_ACADEMIC_YEAR" target="ACADEMIC_YEARS">
 					<attrRelation source="ACADEMIC_YEAR_ID" target="ID" />
@@ -264,9 +258,9 @@
 					</form-editor-panel>
 				</uitable>
 
-				<uitable name="COURSES" descColumn="GROUP_ID">
+				<uitable name="COURSES" descColumn="DESCRIPTION">
 					<uicolumn name="ID"/>
-					<uicolumn name="GROUP_ID">
+					<uicolumn name="DESCRIPTION">
 						<properties>
 							<property text="Grupo"/>
 						</properties>
@@ -517,32 +511,6 @@
 					</form-editor-panel>
 				</uitable>
 
-				<uitable name="TEACHERS" descColumn="NAME">
-					<!--
-					<uicolumn name="ID"/>
-					 -->
-					<uicolumn name="NAME">
-						<properties>
-							<property filterType="like"/>
-						</properties>
-					</uicolumn>
-				</uitable>
-
-				<uitable name="TEACHERS_BY_ACADEMIC_YEAR" descColumn="TEACHER_ID">
-					<uicolumn name="ACADEMIC_YEAR_ID" order="10">
-						<properties>
-							<property filterType="equal"/>
-						</properties>
-						<uihandler ID="uihandler-AcademicYearsDefaultValue"/>
-					</uicolumn>
-					<uicolumn name="TEACHER_ID" order="20">
-						<properties>
-							<property filterType="equal"/>
-						</properties>
-						<uihandler ID="uihandler-Teachers"/>
-					</uicolumn>
-				</uitable>
-
 				<uitable name="BREAK_TIME_STAYS" desc="Recreos">
 					<uicolumns>
 						<uicolumn order="5" name="ACADEMIC_YEAR_ID">
@@ -621,16 +589,63 @@
 					</form-editor-panel>
 				</uitable>
 
-				<uitable name="STUDENTS" descColumn="NAME">
-					<!--
-					<uicolumn name="ID"/>
-					 -->
-					<uicolumn name="NAME"/>
-					<uicolumn name="PHONE_1"/>
-					<uicolumn name="PHONE_2"/>
+				<uitable name="TEACHERS" descColumn="NAME" desc="Profesores">
+					<uicolumn order="10" name="ID">
+						<properties>
+							<property text="DNI"/>
+							<property displaySize="100"/>
+							<property formSize="medium"/>
+							<property filterType="like"/>
+						</properties>
+					</uicolumn>
+					<uicolumn order="20" name="NAME">
+						<properties>
+							<property text="Nombre"/>
+							<property filterType="like"/>
+						</properties>
+					</uicolumn>
+					<uicolumn order="30" name="ACTIVE">
+						<properties>
+							<property text="Activo"/>
+							<property filterType="equals"/>
+						</properties>
+					</uicolumn>
 				</uitable>
 
-				<uitable name="STUDENTS_BY_ACADEMIC_YEAR" descColumn="STUDENT_ID">
+				<uitable name="STUDENTS" descColumn="NAME" desc="Alumnos">
+					<uicolumn order="10" name="ID">
+						<properties>
+							<property text="NIE"/>
+							<property displaySize="100"/>
+							<property formSize="medium"/>
+							<property filterType="like"/>
+						</properties>
+					</uicolumn>
+					<uicolumn order="20" name="NAME">
+						<properties>
+							<property text="Nombre"/>
+							<property formSize="medium"/>
+							<property filterType="like"/>
+						</properties>
+					</uicolumn>
+					<uicolumn order="30" name="PHONE_1">
+						<properties>
+							<property text="Teléfono 1"/>
+							<property formSize="medium"/>
+							<property filterType="like"/>
+						</properties>
+					</uicolumn>
+					<uicolumn order="40" name="PHONE_2">
+						<properties>
+							<property text="Teléfono 2"/>
+							<property formSize="medium"/>
+							<property formGroup="2"/>
+							<property filterType="like"/>
+						</properties>
+					</uicolumn>
+				</uitable>
+
+				<uitable name="STUDENTS_BY_ACADEMIC_YEAR" descColumn="STUDENT_ID" desc="Alumnos por Curso">
 					<uicolumn name="ACADEMIC_YEAR_ID" order="10">
 						<uihandler id="uihandler-AcademicYearsDefaultValue"/>
 					</uicolumn>

@@ -24,12 +24,13 @@
 			<objdef-list-property key="dataSourceCtxProxies">
 				<objdef-property dataSource="ds01" class="es.indra.eplatformfx.data.ui.MemoryCachedDataSourceContext">
 					<list-property key="cachedEntities">
+					<!--
 						<list-item value="STUDENTS"/>
 						<list-item value="STUDENTS_BY_ACADEMIC_YEAR"/>
 						<list-item value="TEACHERS"/>
-						<list-item value="TEACHERS_BY_ACADEMIC_YEAR"/>
 						<list-item value="COURSES"/>
 						<list-item value="ACADEMIC_YEARS"/>
+ -->
 					</list-property>
 				</objdef-property>
 			</objdef-list-property>
