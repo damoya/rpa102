@@ -18,7 +18,6 @@ package org.elyeva.rpa102.cltfx.metadata.editors;
 import org.elyeva.rpa102.cltfx.Rpa102FxAppConstants;
 import org.elyeva.rpa102.cltfx.metadata.columnhandlers.TeacherCollectionCmbUIColumnHandler;
 
-import es.indra.eplatform.data.metadata.DataType;
 import es.indra.eplatform.util.StringUtils;
 import es.indra.eplatformfx.app.Application;
 import es.indra.eplatformfx.data.ui.form.FormMode;
@@ -48,7 +47,7 @@ public class TeacherCollectionComboColumnPropertyEditor extends DataCollectionCo
 								Rpa102FxAppConstants.APPCTX_PPRTY_LOGGED_TEACHER);
 
 				if (!StringUtils.isEmpty(teacherId)) {
-					setValue(DataType.Integer.convertData(teacherId));
+					setValue(teacherId);
 				}
 			}
 		}

@@ -318,7 +318,7 @@
 							<uihandler id="uihandler-CurrentYearStudents"/>
 						</uicolumn>
 
-						<!-- virtual column -->
+						<!-- virtual column
 						<uicolumn order="50" name="SMS_NOTIFICATION">
 							<properties>
 								<property text="Notificación por SMS"/>
@@ -327,14 +327,16 @@
 							</properties>
 							<uihandler id="uihandler-SmsSenderColumn"/>
 						</uicolumn>
-
+						-->
 					</uicolumns>
 					<search-panel-properties>
 						<property groups="3"/>
 						<property minSize="300,80"/>
 					</search-panel-properties>
 					<form-editor-panel>
+						<!--
 						<property class="org.elyeva.rpa102.cltfx.firsthourdelay.FirstHourDelayEditorPanel"/>
+						 -->
 						<property groups="2"/>
 						<property minWidth="320"/>
 					</form-editor-panel>
@@ -486,8 +488,6 @@
 								<property formGroup="3"/>
 							</properties>
 						</uicolumn>
-
-						<!-- virtual column
 						<uicolumn order="150" name="SMS_NOTIFICATION">
 							<properties>
 								<property text="Notificación por SMS"/>
@@ -496,16 +496,13 @@
 							</properties>
 							<uihandler id="uihandler-SmsSenderColumn"/>
 						</uicolumn>
-						-->
 					</uicolumns>
 					<search-panel-properties>
 						<property groups="3"/>
 						<property minSize="300,80"/>
 					</search-panel-properties>
 					<form-editor-panel>
-						<!--
 						<property class="org.elyeva.rpa102.cltfx.classroominc.ClassroomIncidenceEditorPanel"/>
-						 -->
 						<property groups="3"/>
 						<property minWidth="600"/>
 					</form-editor-panel>
@@ -601,6 +598,7 @@
 					<uicolumn order="20" name="NAME">
 						<properties>
 							<property text="Nombre"/>
+							<property formSize="long"/>
 							<property filterType="like"/>
 						</properties>
 					</uicolumn>
@@ -610,6 +608,10 @@
 							<property filterType="equals"/>
 						</properties>
 					</uicolumn>
+					<search-panel-properties>
+						<property groups="3"/>
+						<property minWidth="300"/>
+					</search-panel-properties>
 				</uitable>
 
 				<uitable name="STUDENTS" descColumn="NAME" desc="Alumnos">
@@ -624,7 +626,7 @@
 					<uicolumn order="20" name="NAME">
 						<properties>
 							<property text="Nombre"/>
-							<property formSize="medium"/>
+							<property formSize="long"/>
 							<property filterType="like"/>
 						</properties>
 					</uicolumn>
@@ -643,6 +645,10 @@
 							<property filterType="like"/>
 						</properties>
 					</uicolumn>
+					<search-panel-properties>
+						<property groups="3"/>
+						<property minWidth="300"/>
+					</search-panel-properties>
 				</uitable>
 
 				<uitable name="STUDENTS_BY_ACADEMIC_YEAR" descColumn="STUDENT_ID" desc="Alumnos por Curso">

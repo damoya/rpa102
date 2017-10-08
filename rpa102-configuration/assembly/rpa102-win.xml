@@ -38,6 +38,7 @@
 
 	<fileSets>
 		<!-- JRE -->
+		<!--
 		<fileSet>
 			<directory>target/jre</directory>
 			<outputDirectory>/jre</outputDirectory>
@@ -45,6 +46,7 @@
 				<include>**/*</include>
 			</includes>
 		</fileSet>
+		 -->
 
 		<!-- Config dir -->
 		<fileSet>
