@@ -18,6 +18,7 @@ package org.elyeva.rpa102.cltfx.metadata.editors;
 import org.elyeva.rpa102.cltfx.Rpa102FxAppConstants;
 import org.elyeva.rpa102.cltfx.metadata.columnhandlers.TeacherCollectionCmbUIColumnHandler;
 
+import es.indra.eplatform.EPException;
 import es.indra.eplatform.util.StringUtils;
 import es.indra.eplatformfx.app.Application;
 import es.indra.eplatformfx.data.ui.form.FormMode;
@@ -30,7 +31,7 @@ import es.indra.eplatformfx.data.ui.metadata.editors.DataCollectionComboColumnPr
 public class TeacherCollectionComboColumnPropertyEditor extends DataCollectionComboColumnPropertyEditor {
 
 	@Override
-	public void initialize(IFormContext ctx) {
+	public void initialize(IFormContext ctx) throws EPException {
 		super.initialize(ctx);
 
 		if (ctx.getFormMode() == FormMode.NEW || ctx.getFormMode() == FormMode.FILTER) {

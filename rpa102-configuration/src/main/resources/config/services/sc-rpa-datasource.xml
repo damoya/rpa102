@@ -75,6 +75,20 @@
 						</queryJoin>
 					</queryJoins>
 				</query>
+				<query id="queryStudents">
+					<queryTables>
+						<queryTable alias="A" name="STUDENTS">
+							<queryColumn name="ID"/>
+							<queryColumn name="NAME"/>
+						</queryTable>
+						<queryTable alias="B" name="STUDENTS_BY_ACADEMIC_YEAR"/>
+					</queryTables>
+					<queryJoins>
+						<queryJoin source="A" target="B">
+							<queryAttrRelation source="ID" target="STUDENT_ID" />
+						</queryJoin>
+					</queryJoins>
+				</query>
 			</queries>
 		</metadata>
 
@@ -140,9 +154,10 @@
 
 				<uihandler id="uihandler-CurrentYearStudents"
 						class="es.indra.eplatformfx.data.ui.metadata.columnhandlers.DataCollectionCmbUIColumnHandler"
-						relatedEntityType="STUDENTS_BY_ACADEMIC_YEAR"
-						valueColumn="STUDENT_ID"
-						filter="ACADEMIC_YEAR_ID='#{column:ACADEMIC_YEAR_ID}'"
+						queryId="queryStudents"
+						valueColumn="A.ID"
+						displayColumn="A.NAME"
+						filter="B.ACADEMIC_YEAR_ID='#{column:ACADEMIC_YEAR_ID}'"
 						text="Alumno"
 						formSize="long"/>
 
@@ -730,7 +745,7 @@
 						<property groups="3"/>
 					</search-panel-properties>
 				</uiquery>
-				<uiquery name="queryFirstHourDelay">
+				<uiquery name="queryBreakTimeStays">
 					<search-panel-properties>
 						<property groups="3"/>
 					</search-panel-properties>
