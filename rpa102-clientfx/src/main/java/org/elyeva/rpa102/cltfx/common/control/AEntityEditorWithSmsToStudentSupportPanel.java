@@ -60,11 +60,12 @@ public abstract class AEntityEditorWithSmsToStudentSupportPanel extends DefaultE
 
 	private IRecord getRelatedStudentRecord(Object entity) throws EPException {
 
-		IDataCollection<IRecord> records = RecordUtils.getRelatedRecordsByFk(
-				getRecordDataStore(),
-				getUITable(),
-				entity,
-				entityStudentIdFieldName);
+		IDataCollection<IRecord> records =
+				RecordUtils.getRelatedRecordsByFk(
+						getRecordDataStore(),
+						getUITable().getTable(),
+						entity,
+						entityStudentIdFieldName);
 
 		return RecordUtils.getFirstRecord(records);
 	}
@@ -79,7 +80,8 @@ public abstract class AEntityEditorWithSmsToStudentSupportPanel extends DefaultE
 			addPhoneNumber(smsConfig, studentRecord, RpaDbConstants.TblUsers.COL_PHONE_1);
 			addPhoneNumber(smsConfig, studentRecord, RpaDbConstants.TblUsers.COL_PHONE_2);
 
-			smsConfig.referencedElement(DataUtils.getStringKey(entity, getUITable(), true));
+			smsConfig.referencedElement(
+					DataUtils.getStringKey(entity, getUITable().getTable(), true));
 		}
 
 		return smsConfig;

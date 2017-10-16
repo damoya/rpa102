@@ -16,10 +16,20 @@
 				<query id="queryFirstHourDelay">
 					<queryTables>
 						<queryTable alias="A" name="FIRST_HOUR_DELAY_ENTRIES">
-							<queryIncludeAllColumns/>
+							<queryColumn name="DATE"/>
+							<queryColumn name="ARRIVAL_TIME"/>
 						</queryTable>
 						<queryTable alias="B" name="STUDENTS_BY_ACADEMIC_YEAR"/>
 						<queryTable alias="C" name="COURSES">
+							<queryColumn name="ID"/>
+						</queryTable>
+						<queryTable alias="D" name="TEACHERS">
+							<queryColumn name="NAME"/>
+						</queryTable>
+						<queryTable alias="E" name="STUDENTS">
+							<queryColumn name="NAME"/>
+						</queryTable>
+						<queryTable alias="F" name="ACADEMIC_YEARS">
 							<queryColumn name="DESCRIPTION"/>
 						</queryTable>
 					</queryTables>
@@ -28,8 +38,17 @@
 							<queryAttrRelation source="ACADEMIC_YEAR_ID" target="ACADEMIC_YEAR_ID"/>
 							<queryAttrRelation source="STUDENT_ID" target="STUDENT_ID"/>
 						</queryJoin>
+						<queryJoin source="A" target="D">
+							<queryAttrRelation source="TEACHER_ID" target="ID"/>
+						</queryJoin>
+						<queryJoin source="A" target="E">
+							<queryAttrRelation source="STUDENT_ID" target="ID"/>
+						</queryJoin>
 						<queryJoin source="B" target="C">
 							<queryAttrRelation source="COURSE_ID" target="ID"/>
+						</queryJoin>
+						<queryJoin source="A" target="F">
+							<queryAttrRelation source="ACADEMIC_YEAR_ID" target="ID"/>
 						</queryJoin>
 					</queryJoins>
 				</query>
@@ -37,10 +56,31 @@
 				<query id="queryClassRoomIncidences">
 					<queryTables>
 						<queryTable alias="A" name="CLASSROOM_INCIDENCES">
-							<queryIncludeAllColumns/>
+							<queryColumn name="DATE"/>
+							<queryColumn name="SCHOOL_MGMT_ORDER_CAUSE"/>
+							<queryColumn name="USE_OF_MOBILE_CAUSE"/>
+							<queryColumn name="BREAK_MATERIAL_CAUSE"/>
+							<queryColumn name="LACK_OF_RESPECT_CAUSE"/>
+							<queryColumn name="GO_OUT_FROM_SCHOOL_CAUSE"/>
+							<queryColumn name="DISTURB_CAUSE"/>
+							<queryColumn name="BREACH_OF_ORDER_CAUSE"/>
+							<queryColumn name="INTERRUPT_TEACHER_EXPLANATION_CAUSE"/>
+							<queryColumn name="TO_NOT_WORK_CAUSE"/>
+							<queryColumn name="SMOKE_CAUSE"/>
+							<queryColumn name="HIT_OTHER_STUDENT_CAUSE"/>
+							<queryColumn name="OTHER_CAUSE"/>
 						</queryTable>
 						<queryTable alias="B" name="STUDENTS_BY_ACADEMIC_YEAR"/>
 						<queryTable alias="C" name="COURSES">
+							<queryColumn name="ID"/>
+						</queryTable>
+						<queryTable alias="D" name="TEACHERS">
+							<queryColumn name="NAME"/>
+						</queryTable>
+						<queryTable alias="E" name="STUDENTS">
+							<queryColumn name="NAME"/>
+						</queryTable>
+						<queryTable alias="F" name="ACADEMIC_YEARS">
 							<queryColumn name="DESCRIPTION"/>
 						</queryTable>
 					</queryTables>
@@ -49,8 +89,17 @@
 							<queryAttrRelation source="ACADEMIC_YEAR_ID" target="ACADEMIC_YEAR_ID"/>
 							<queryAttrRelation source="STUDENT_ID" target="STUDENT_ID"/>
 						</queryJoin>
+						<queryJoin source="A" target="D">
+							<queryAttrRelation source="TEACHER_ID" target="ID"/>
+						</queryJoin>
+						<queryJoin source="A" target="E">
+							<queryAttrRelation source="STUDENT_ID" target="ID"/>
+						</queryJoin>
 						<queryJoin source="B" target="C">
 							<queryAttrRelation source="COURSE_ID" target="ID"/>
+						</queryJoin>
+						<queryJoin source="A" target="F">
+							<queryAttrRelation source="ACADEMIC_YEAR_ID" target="ID"/>
 						</queryJoin>
 					</queryJoins>
 				</query>
@@ -58,10 +107,21 @@
 				<query id="queryBreakTimeStays">
 					<queryTables>
 						<queryTable alias="A" name="BREAK_TIME_STAYS">
-							<queryIncludeAllColumns/>
+							<queryColumn name="DATE"/>
+							<queryColumn name="FIRST_HOUR_DELAY_CAUSE"/>
+							<queryColumn name="SCHOOL_MGMT_ORDER_CAUSE"/>
 						</queryTable>
 						<queryTable alias="B" name="STUDENTS_BY_ACADEMIC_YEAR"/>
 						<queryTable alias="C" name="COURSES">
+							<queryColumn name="ID"/>
+						</queryTable>
+						<queryTable alias="D" name="TEACHERS">
+							<queryColumn name="NAME"/>
+						</queryTable>
+						<queryTable alias="E" name="STUDENTS">
+							<queryColumn name="NAME"/>
+						</queryTable>
+						<queryTable alias="F" name="ACADEMIC_YEARS">
 							<queryColumn name="DESCRIPTION"/>
 						</queryTable>
 					</queryTables>
@@ -70,8 +130,17 @@
 							<queryAttrRelation source="ACADEMIC_YEAR_ID" target="ACADEMIC_YEAR_ID"/>
 							<queryAttrRelation source="STUDENT_ID" target="STUDENT_ID"/>
 						</queryJoin>
+						<queryJoin source="A" target="D">
+							<queryAttrRelation source="TEACHER_ID" target="ID"/>
+						</queryJoin>
+						<queryJoin source="A" target="E">
+							<queryAttrRelation source="STUDENT_ID" target="ID"/>
+						</queryJoin>
 						<queryJoin source="B" target="C">
 							<queryAttrRelation source="COURSE_ID" target="ID"/>
+						</queryJoin>
+						<queryJoin source="A" target="F">
+							<queryAttrRelation source="ACADEMIC_YEAR_ID" target="ID"/>
 						</queryJoin>
 					</queryJoins>
 				</query>
@@ -134,12 +203,6 @@
 						text="Año Academico"
 						formSize="long"/>
 
-				<!--
-				class="org.elyeva.rpa102.cltfx.metadata.columnhandlers.AcademicYearColumnHandler"
-				class="es.indra.eplatformfx.data.ui.metadata.columnhandlers.EntitySelectorComboColumnHandler"
-				class="es.indra.eplatformfx.data.ui.metadata.columnhandlers.DataCollectionComboColumnHandler"
-				 -->
-
 				<uihandler id="uihandler-AcademicYears"
 						class="es.indra.eplatformfx.data.ui.metadata.columnhandlers.DataCollectionCmbUIColumnHandler"
 						relatedEntityType="ACADEMIC_YEARS"
@@ -161,12 +224,6 @@
 						text="Alumno"
 						formSize="long"/>
 
-				<!--
-				filter="ACADEMIC_YEAR_ID='#{column:ACADEMIC_YEAR_ID}'"
-				class="es.indra.eplatformfx.data.ui.metadata.columnhandlers.EntitySelectorCmbUIColumnHandler"
-				class="es.indra.eplatformfx.data.ui.metadata.columnhandlers.DataCollectionCmbUIColumnHandler"
-				 -->
-
 				<uihandler id="uihandler-Teachers"
 						class="org.elyeva.rpa102.cltfx.metadata.columnhandlers.TeacherCollectionCmbUIColumnHandler"
 						relatedEntityType="TEACHERS"
@@ -181,12 +238,7 @@
 						text="Profesor"
 						formSize="long"/>
 
-				<!--
-				class="es.indra.eplatformfx.data.ui.metadata.columnhandlers.EntitySelectorComboColumnHandler"
-				class="org.elyeva.rpa102.cltfx.metadata.columnhandlers.TeacherCollectionComboColumnHandler"
-				 -->
-
-				<uihandler id="uihandler-Cursos"
+				<uihandler id="uihandler-Curses"
 						class="es.indra.eplatformfx.data.ui.metadata.columnhandlers.DataCollectionCmbUIColumnHandler"
 						relatedEntityType="COURSES"
 						text="Curso"/>
@@ -344,10 +396,10 @@
 						</uicolumn>
 						-->
 					</uicolumns>
-					<search-panel-properties>
+					<search-form>
 						<property groups="3"/>
 						<property minSize="300,80"/>
-					</search-panel-properties>
+					</search-form>
 					<form-editor-panel>
 						<!--
 						<property class="org.elyeva.rpa102.cltfx.firsthourdelay.FirstHourDelayEditorPanel"/>
@@ -512,10 +564,10 @@
 							<uihandler id="uihandler-SmsSenderColumn"/>
 						</uicolumn>
 					</uicolumns>
-					<search-panel-properties>
+					<search-form>
 						<property groups="3"/>
 						<property minSize="300,80"/>
-					</search-panel-properties>
+					</search-form>
 					<form-editor-panel>
 						<property class="org.elyeva.rpa102.cltfx.classroominc.ClassroomIncidenceEditorPanel"/>
 						<property groups="3"/>
@@ -535,7 +587,7 @@
 
 							<uihandler id="uihandler-AcademicYearsDefaultValue"/>
 						</uicolumn>
-						<uicolumn order="10" name="date">
+						<uicolumn order="10" name="DATE">
 							<properties>
 								<property text="Fecha"/>
 								<property displaySize="100"/>
@@ -589,10 +641,10 @@
 						</uicolumn>
 						-->
 					</uicolumns>
-					<search-panel-properties>
+					<search-form>
 						<property groups="3"/>
 						<property minSize="300,80"/>
-					</search-panel-properties>
+					</search-form>
 					<form-editor-panel>
 						<!--
 						<property class="org.elyeva.rpa102.cltfx.breaktimestays.BreakTimeStayEditorPanel"/>
@@ -623,10 +675,10 @@
 							<property filterType="equals"/>
 						</properties>
 					</uicolumn>
-					<search-panel-properties>
+					<search-form>
 						<property groups="3"/>
 						<property minWidth="300"/>
-					</search-panel-properties>
+					</search-form>
 				</uitable>
 
 				<uitable name="STUDENTS" descColumn="NAME" desc="Alumnos">
@@ -660,10 +712,10 @@
 							<property filterType="like"/>
 						</properties>
 					</uicolumn>
-					<search-panel-properties>
+					<search-form>
 						<property groups="3"/>
 						<property minWidth="300"/>
-					</search-panel-properties>
+					</search-form>
 				</uitable>
 
 				<uitable name="STUDENTS_BY_ACADEMIC_YEAR" descColumn="STUDENT_ID" desc="Alumnos por Curso">
@@ -677,7 +729,7 @@
 						<properties>
 							<property filterType="equal"/>
 						</properties>
-						<uihandler id="uihandler-Cursos"/>
+						<uihandler id="uihandler-Curses"/>
 					</uicolumn>
 				</uitable>
 
@@ -736,19 +788,110 @@
 			</uitables>
 			<uiqueries>
 				<uiquery name="queryFirstHourDelay">
-					<search-panel-properties>
-						<property groups="3"/>
-					</search-panel-properties>
+					<uicolumns>
+						<uicolumn order="10" name="F.DESCRIPTION" text="Año Académico"/>
+						<uicolumn order="20" name="A.DATE"/>
+						<uicolumn order="30" name="A.ARRIVAL_TIME"/>
+						<uicolumn order="40" name="D.NAME" text="Profesor"/>
+						<uicolumn order="50" name="E.NAME" text="Alumno"/>
+						<uicolumn order="60" name="C.ID" text="Curso"/>
+					</uicolumns>
+					<search-form>
+						<properties>
+							<property groups="3"/>
+						</properties>
+						<uicolumns>
+							<uicolumn order="10" name="A.ACADEMIC_YEAR_ID"/>
+							<uicolumn order="20" name="A.DATE"/>
+							<uicolumn order="30" name="A.TEACHER_ID"/>
+							<uicolumn order="40" name="A.STUDENT_ID">
+								<uihandler class="es.indra.eplatformfx.data.ui.metadata.columnhandlers.DataCollectionCmbUIColumnHandler"
+									queryId="queryStudents"
+									valueColumn="A.ID"
+									displayColumn="A.NAME"
+									filter="B.ACADEMIC_YEAR_ID='#{column:A.ACADEMIC_YEAR_ID}'"
+									text="Alumno"
+									formSize="long"/>
+							</uicolumn>
+							<uicolumn order="50" name="B.COURSE_ID"/>
+						</uicolumns>
+					</search-form>
 				</uiquery>
 				<uiquery name="queryClassRoomIncidences">
-					<search-panel-properties>
-						<property groups="3"/>
-					</search-panel-properties>
+					<uicolumns>
+						<uicolumn order="10" name="F.DESCRIPTION" text="Año Académico"/>
+						<uicolumn order="20" name="A.DATE"/>
+						<uicolumn order="40" name="D.NAME" text="Profesor"/>
+						<uicolumn order="50" name="E.NAME" text="Alumno"/>
+						<uicolumn order="60" name="C.ID" text="Curso"/>
+						<uicolumn order="61" name="A.SCHOOL_MGMT_ORDER_CAUSE"/>
+						<uicolumn order="63" name="A.USE_OF_MOBILE_CAUSE"/>
+						<uicolumn order="66" name="A.BREAK_MATERIAL_CAUSE"/>
+						<uicolumn order="70" name="A.LACK_OF_RESPECT_CAUSE"/>
+						<uicolumn order="73" name="A.GO_OUT_FROM_SCHOOL_CAUSE"/>
+						<uicolumn order="76" name="A.DISTURB_CAUSE"/>
+						<uicolumn order="80" name="A.BREACH_OF_ORDER_CAUSE"/>
+						<uicolumn order="83" name="A.INTERRUPT_TEACHER_EXPLANATION_CAUSE"/>
+						<uicolumn order="86" name="A.TO_NOT_WORK_CAUSE"/>
+						<uicolumn order="90" name="A.SMOKE_CAUSE"/>
+						<uicolumn order="93" name="A.HIT_OTHER_STUDENT_CAUSE"/>
+						<uicolumn order="96" name="A.OTHER_CAUSE"/>
+					</uicolumns>
+					<search-form>
+						<properties>
+							<property groups="3"/>
+	 						<list-property key="excludeAlias">
+	                              <list-item value="D"/>
+	                              <list-item value="E"/>
+							</list-property>
+						</properties>
+						<uicolumns>
+							<uicolumn order="10" name="A.ACADEMIC_YEAR_ID"/>
+							<uicolumn order="20" name="A.DATE"/>
+							<uicolumn order="30" name="A.TEACHER_ID"/>
+							<uicolumn order="40" name="A.STUDENT_ID">
+								<uihandler class="es.indra.eplatformfx.data.ui.metadata.columnhandlers.DataCollectionCmbUIColumnHandler"
+									queryId="queryStudents"
+									valueColumn="A.ID"
+									displayColumn="A.NAME"
+									filter="B.ACADEMIC_YEAR_ID='#{column:A.ACADEMIC_YEAR_ID}'"
+									text="Alumno"
+									formSize="long"/>
+							</uicolumn>
+							<uicolumn order="50" name="B.COURSE_ID"/>
+						</uicolumns>
+					</search-form>
 				</uiquery>
 				<uiquery name="queryBreakTimeStays">
-					<search-panel-properties>
-						<property groups="3"/>
-					</search-panel-properties>
+					<uicolumns>
+						<uicolumn order="10" name="F.DESCRIPTION" text="Año Académico"/>
+						<uicolumn order="20" name="A.DATE"/>
+						<uicolumn order="40" name="D.NAME" text="Profesor"/>
+						<uicolumn order="50" name="E.NAME" text="Alumno"/>
+						<uicolumn order="60" name="C.ID" text="Curso"/>
+						<uicolumn order="70" name="A.FIRST_HOUR_DELAY_CAUSE"/>
+						<uicolumn order="80" name="A.SCHOOL_MGMT_ORDER_CAUSE"/>
+					</uicolumns>
+					<search-form>
+						<properties>
+							<property groups="3"/>
+						</properties>
+						<uicolumns>
+							<uicolumn order="10" name="A.ACADEMIC_YEAR_ID"/>
+							<uicolumn order="20" name="A.DATE"/>
+							<uicolumn order="30" name="A.TEACHER_ID"/>
+							<uicolumn order="40" name="A.STUDENT_ID">
+								<uihandler class="es.indra.eplatformfx.data.ui.metadata.columnhandlers.DataCollectionCmbUIColumnHandler"
+									queryId="queryStudents"
+									valueColumn="A.ID"
+									displayColumn="A.NAME"
+									filter="B.ACADEMIC_YEAR_ID='#{column:A.ACADEMIC_YEAR_ID}'"
+									text="Alumno"
+									formSize="long"/>
+							</uicolumn>
+							<uicolumn order="50" name="B.COURSE_ID"/>
+						</uicolumns>
+					</search-form>
 				</uiquery>
 			</uiqueries>
 		</uimetadata>
