@@ -83,6 +83,9 @@
 						<queryTable alias="F" name="ACADEMIC_YEARS">
 							<queryColumn name="DESCRIPTION"/>
 						</queryTable>
+						<queryTable alias="G" name="TEACHERS">
+							<queryColumn name="NAME"/>
+						</queryTable>
 					</queryTables>
 					<queryJoins>
 						<queryJoin source="A" target="B">
@@ -101,6 +104,9 @@
 						<queryJoin source="A" target="F">
 							<queryAttrRelation source="ACADEMIC_YEAR_ID" target="ID"/>
 						</queryJoin>
+						<queryLeftOuterJoin source="A" target="G" type="LEFT">
+							<queryAttrRelation source="SENDER_TEACHER_ID" target="ID"/>
+						</queryLeftOuterJoin>
 					</queryJoins>
 				</query>
 
@@ -371,6 +377,7 @@
 
 						<uicolumn order="30" name="TEACHER_ID">
 							<properties>
+								<property text="Profesor Rpa102"/>
 								<property filterType="equal"/>
 								<property formSize="long"/>
 							</properties>
@@ -444,8 +451,18 @@
 							</properties>
 						</uicolumn>
 
+						<uicolumn order="25" name="SENDER_TEACHER_ID">
+							<properties>
+								<property text="Profesor Remitente"/>
+								<property filterType="equal"/>
+								<property formSize="long"/>
+							</properties>
+							<uihandler id="uihandler-ActiveTeachers"/>
+						</uicolumn>
+
 						<uicolumn order="30" name="TEACHER_ID">
 							<properties>
+								<property text="Profesor Rpa102"/>
 								<property filterType="equal"/>
 								<property formSize="long"/>
 							</properties>
@@ -599,6 +616,7 @@
 						</uicolumn>
 						<uicolumn order="30" name="TEACHER_ID">
 							<properties>
+								<property text="Profesor Rpa102"/>
 								<property filterType="equal"/>
 								<property formSize="long"/>
 							</properties>
@@ -792,7 +810,7 @@
 						<uicolumn order="10" name="F.DESCRIPTION" text="Año Académico"/>
 						<uicolumn order="20" name="A.DATE"/>
 						<uicolumn order="30" name="A.ARRIVAL_TIME"/>
-						<uicolumn order="40" name="D.NAME" text="Profesor"/>
+						<uicolumn order="40" name="D.NAME" text="Profesor Rpa102"/>
 						<uicolumn order="50" name="E.NAME" text="Alumno"/>
 						<uicolumn order="60" name="C.ID" text="Curso"/>
 					</uicolumns>
@@ -821,7 +839,8 @@
 					<uicolumns>
 						<uicolumn order="10" name="F.DESCRIPTION" text="Año Académico"/>
 						<uicolumn order="20" name="A.DATE"/>
-						<uicolumn order="40" name="D.NAME" text="Profesor"/>
+						<uicolumn order="25" name="G.NAME" text="Profesor Remitente"/>
+						<uicolumn order="40" name="D.NAME" text="Profesor Rpa102"/>
 						<uicolumn order="50" name="E.NAME" text="Alumno"/>
 						<uicolumn order="60" name="C.ID" text="Curso"/>
 						<uicolumn order="61" name="A.SCHOOL_MGMT_ORDER_CAUSE"/>
@@ -848,6 +867,7 @@
 						<uicolumns>
 							<uicolumn order="10" name="A.ACADEMIC_YEAR_ID"/>
 							<uicolumn order="20" name="A.DATE"/>
+							<uicolumn order="25" name="A.SENDER_TEACHER_ID"/>
 							<uicolumn order="30" name="A.TEACHER_ID"/>
 							<uicolumn order="40" name="A.STUDENT_ID">
 								<uihandler class="es.indra.eplatformfx.data.ui.metadata.columnhandlers.DataCollectionCmbUIColumnHandler"
@@ -866,7 +886,7 @@
 					<uicolumns>
 						<uicolumn order="10" name="F.DESCRIPTION" text="Año Académico"/>
 						<uicolumn order="20" name="A.DATE"/>
-						<uicolumn order="40" name="D.NAME" text="Profesor"/>
+						<uicolumn order="40" name="D.NAME" text="Profesor Rpa102"/>
 						<uicolumn order="50" name="E.NAME" text="Alumno"/>
 						<uicolumn order="60" name="C.ID" text="Curso"/>
 						<uicolumn order="70" name="A.FIRST_HOUR_DELAY_CAUSE"/>

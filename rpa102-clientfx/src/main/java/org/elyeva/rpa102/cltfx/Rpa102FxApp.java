@@ -15,7 +15,7 @@ public class Rpa102FxApp extends Application {
 
 		appWindow.setTitle("RPA102");
 		appWindow.setSize(800, 600);
-//		appWindow.maximize();
+		appWindow.maximize();
 		appWindow.show();
 	}
 
