@@ -1,0 +1,4 @@
+rpa102 0.2.0 - Changes since rpa102 0.1.0
+-----------------------------------------------
+New Altiria SMS Sender Provider
+Update eplatform and eplatformfx dependences to 1.8.14 and 0.3.0

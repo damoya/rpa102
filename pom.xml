@@ -16,17 +16,15 @@
 	</modules>
 
 	<properties>
-		<rpa102.version>0.1.0-SNAPSHOT</rpa102.version>
-		<eplatform.version>1.8.14-SNAPSHOT</eplatform.version>
-		<eplatformfx.version>0.3.0-SNAPSHOT</eplatformfx.version>
+		<rpa102.version>0.2.0-SNAPSHOT</rpa102.version>
+		<eplatform.version>1.8.14</eplatform.version>
+		<eplatformfx.version>0.3.0</eplatformfx.version>
 		<!-- Derby -->
 		<derby.version>10.11.1.1</derby.version>
 		<!-- Apache htttp components  -->
 		<apache-httpcomponents.version>4.5.3</apache-httpcomponents.version>
 		<!-- JSON Version  -->
 		<json.version>20170516</json.version>
-		<!-- JRE -->
-		<jre.version>1.8.77</jre.version>
 	</properties>
 
 	<!--General dependency definition. All dependencies declares within this
@@ -80,29 +78,6 @@
 				<artifactId>eplatform-app-commons</artifactId>
 				<version>${eplatform.version}</version>
 			</dependency>
-			<!--
-
-			<dependency>
-				<groupId>es.indra.eplatform</groupId>
-				<artifactId>eplatform-comm-serv</artifactId>
-				<version>${eplatform.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>es.indra.eplatform</groupId>
-				<artifactId>eplatform-rmi-serv</artifactId>
-				<version>${eplatform.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>es.indra.eplatform</groupId>
-				<artifactId>eplatform-data-xmlds</artifactId>
-				<version>${eplatform.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>es.indra.eplatform</groupId>
-				<artifactId>eplatform-data-objds</artifactId>
-				<version>${eplatform.version}</version>
-			</dependency>
-			 -->
 			<dependency>
 				<groupId>es.indra.eplatform</groupId>
 				<artifactId>eplatform-services</artifactId>
@@ -260,7 +235,6 @@
 					<encoding>ISO-8859-1</encoding>
 				</configuration>
 			</plugin>
-
 			<plugin>
 				<groupId>org.sonatype.plugins</groupId>
 				<artifactId>nexus-staging-maven-plugin</artifactId>
@@ -282,14 +256,12 @@
 			</plugin>
 
 		</plugins>
-
 		<resources>
 			<resource>
 				<filtering>true</filtering>
 				<directory>${basedir}/src/main/resources</directory>
 			</resource>
 		</resources>
-
 	</build>
 
 	<profiles>

@@ -92,6 +92,7 @@
 			</activation>
 			<build>
 				<plugins>
+					<!--
 					<plugin>
 						<groupId>com.coderplus.maven.plugins</groupId>
 						<artifactId>copy-rename-maven-plugin</artifactId>
@@ -103,41 +104,14 @@
 								<goals>
 									<goal>copy</goal>
 								</goals>
-								<!--
 								<configuration>
 									<sourceFile>../sis-configuration/src/main/resources/logback.xml</sourceFile>
 									<destinationFile>${basedir}/src/main/resources/logback.xml</destinationFile>
 								</configuration>
-								 -->
 							</execution>
 						</executions>
 					</plugin>
-					<plugin>
-						<artifactId>maven-dependency-plugin</artifactId>
-						<executions>
-							<execution>
-								<id>get-windows-x64-jre</id>
-								<phase>prepare-package</phase>
-								<goals>
-									<goal>unpack</goal>
-								</goals>
-								<configuration>
-									<outputDirectory>
-										${project.build.directory}
-									</outputDirectory>
-									<artifactItems>
-										<artifactItem>
-											<groupId>com.oracle</groupId>
-											<artifactId>jre</artifactId>
-											<version>${jre.version}</version>
-											<type>zip</type>
-											<classifier>windows-x64</classifier>
-										</artifactItem>
-									</artifactItems>
-								</configuration>
-							</execution>
-						</executions>
-					</plugin>
+					-->
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-assembly-plugin</artifactId>
