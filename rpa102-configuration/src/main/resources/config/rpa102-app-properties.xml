@@ -40,7 +40,7 @@
 
 	<!-- Security connection parameters -->
 	<entry key="db.jdbcDriverClass">org.apache.derby.jdbc.EmbeddedDriver</entry>
-	<entry key="db.jdbcURL">jdbc:derby:c:\rpa102\db;create=true</entry>
+	<entry key="db.jdbcURL">jdbc:derby:d:\rpa102\db;create=true</entry>
 	<!--
 	<entry key="db.jdbcURL">jdbc:derby:@{PROGRAMDATA}\rpa102\db;shutdown=true</entry>
 	<entry key="db.jdbcURL">jdbc:derby:c:\rpa102\db</entry>

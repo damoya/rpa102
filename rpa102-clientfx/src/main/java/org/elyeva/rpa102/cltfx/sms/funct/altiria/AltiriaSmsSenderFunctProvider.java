@@ -32,7 +32,11 @@ import es.indra.eplatform.util.log.ELogger;
  */
 public class AltiriaSmsSenderFunctProvider extends ADbSmsSenderFunctProvider {
 
+	private static final String PRPTY_URL_KEY = "smsAltiria.url";
+
 	private static final String PRPTY_LOGIN_KEY = "smsAltiria.login";
+
+	private static final String PRPTY_DOMAIN_KEY = "smsAltiria.domain";
 
 	private static final String PRPTY_PASSWORD_KEY = "smsAltiria.password";
 
@@ -41,16 +45,26 @@ public class AltiriaSmsSenderFunctProvider extends ADbSmsSenderFunctProvider {
 	private String login;
 	private String passwd;
 	private String senderId;
+	private String domainId;
+	private String url;
 
 	public AltiriaSmsSenderFunctProvider(IObjectDefinition<ISmsSenderFunctProvider> objDef) {
 		login = objDef.getProperty(AltiriaSmsSenderFunctProvider.PRPTY_LOGIN_KEY);
 		passwd = objDef.getProperty(AltiriaSmsSenderFunctProvider.PRPTY_PASSWORD_KEY);
 		senderId = objDef.getProperty(AltiriaSmsSenderFunctProvider.PRPTY_SENDER_ID_KEY);
+		url = objDef.getProperty(AltiriaSmsSenderFunctProvider.PRPTY_URL_KEY);
+		domainId = objDef.getProperty(AltiriaSmsSenderFunctProvider.PRPTY_DOMAIN_KEY);
 	}
 
 	@Override
 	public SmsSentResponse sendSms(
 			String msg, String from, String destPhone) throws EPException {
+
+		String phone = destPhone;
+
+		if (destPhone.startsWith("+")) {
+			phone = phone.substring(1);
+		}
 
 		SmsSentResponse ret = new SmsSentResponse(SmsState.SENT);
 		ret.setMsgText(msg);
@@ -73,7 +87,7 @@ public class AltiriaSmsSenderFunctProvider extends ADbSmsSenderFunctProvider {
 		//Se debe reemplazar la cadena '/sustituirPOSTsms' por la parte correspondiente
 		//de la URL suministrada por Altiria al dar de alta el servicio o pedir cuenta
 		// de prueba
-		HttpPost post = new HttpPost("http://www.altiria.net/sustituirPOSTsms");
+		HttpPost post = new HttpPost(url);
 
 		//Se crea la lista de parámetros a enviar en la petición POST
 		List<NameValuePair> parametersList = new ArrayList<NameValuePair>();
@@ -81,10 +95,10 @@ public class AltiriaSmsSenderFunctProvider extends ADbSmsSenderFunctProvider {
 		//usuario en el sistema, proporcionados por Altiria al dar de alta el servicio
 		//o pedir cuenta de prueba
 		parametersList.add(new BasicNameValuePair("cmd", "sendsms"));
-		parametersList.add(new BasicNameValuePair("domainId", "XX"));
+		parametersList.add(new BasicNameValuePair("domainId", domainId));
 		parametersList.add(new BasicNameValuePair("login", login));
 		parametersList.add(new BasicNameValuePair("passwd", passwd));
-		parametersList.add(new BasicNameValuePair("dest", destPhone));
+		parametersList.add(new BasicNameValuePair("dest", phone));
 		parametersList.add(new BasicNameValuePair("msg", msg));
 		//Remitente autorizado por Altiria al dar de alta el servicio. No disponible
 		//en todos los países. Omitir el parametro si no se cuenta con ninguno.
@@ -127,7 +141,7 @@ public class AltiriaSmsSenderFunctProvider extends ADbSmsSenderFunctProvider {
 
 				ret.setSmsState(SmsState.ERROR);
 				ret.setErrorId(resp);
-				ret.setErrorMsg("Código de error de Altiria. Compruebe las especificaciones");
+				ret.setErrorMsg("Código de error de Altiria. Compruebe las especificaciones [" + resp + "]");
 			}
 		}
 		catch (IOException e) {
