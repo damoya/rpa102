@@ -6,13 +6,14 @@
 	</funct-provider>
 
 	<funct-provider id="org.elyeva.rpa102.cltfx.sms.funct.ISmsSenderFunctProvider">
+		<!--
 		<properties>
 			<property class="org.elyeva.rpa102.cltfx.sms.funct.altiria.AltiriaSmsSenderFunctProvider"/>
 			<property key="smsAltiria.login" value=""/>
 			<property key="smsAltiria.password" value=""/>
 			<property key="smsAltiria.senderId" value=""/>
+			<property key="smsAltiria.url" value="http://www.altiria.net/sustituirPOSTsms"/>
 		</properties>
-		<!--
 		<properties>
 			<property class="org.elyeva.rpa102.cltfx.sms.funct.movistar.MovistarSmsSenderFunctProvider"/>
 			<property key="smsMovistar.login" value=""/>
