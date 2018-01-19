@@ -56,7 +56,6 @@ public class AltiriaSmsSenderFunctProvider extends ADbSmsSenderFunctProvider {
 				AltiriaSmsSenderFunctProvider.PRPTY_URL_KEY,
 				"http://www.altiria.net/api/http");
 		domainId = objDef.getProperty(AltiriaSmsSenderFunctProvider.PRPTY_DOMAIN_KEY);
-		
 	}
 
 	@Override
