@@ -56,6 +56,7 @@ public class AltiriaSmsSenderFunctProvider extends ADbSmsSenderFunctProvider {
 				AltiriaSmsSenderFunctProvider.PRPTY_URL_KEY,
 				"http://www.altiria.net/api/http");
 		domainId = objDef.getProperty(AltiriaSmsSenderFunctProvider.PRPTY_DOMAIN_KEY);
+		
 	}
 
 	@Override
@@ -72,8 +73,8 @@ public class AltiriaSmsSenderFunctProvider extends ADbSmsSenderFunctProvider {
 		ret.setMsgText(msg);
 		ret.setMsgId(UUID.randomUUID().toString());
 
-		//Se fija el tiempo máximo de espera para conectar con el servidor (5000)
-		//Se fija el tiempo máximo de espera de la respuesta del servidor (60000)
+		//Se fija el tiempo mï¿½ximo de espera para conectar con el servidor (5000)
+		//Se fija el tiempo mï¿½ximo de espera de la respuesta del servidor (60000)
 		RequestConfig config = RequestConfig.custom()
 				.setConnectTimeout(5000)
 				.setSocketTimeout(60000)
@@ -84,16 +85,16 @@ public class AltiriaSmsSenderFunctProvider extends ADbSmsSenderFunctProvider {
 		builder.setDefaultRequestConfig(config);
 		CloseableHttpClient httpClient = builder.build();
 
-		//Se fija la URL sobre la que enviar la petición POST
-		//Como ejemplo la petición se envía a www.altiria.net/sustituirPOSTsms
+		//Se fija la URL sobre la que enviar la peticiï¿½n POST
+		//Como ejemplo la peticiï¿½n se envï¿½a a www.altiria.net/sustituirPOSTsms
 		//Se debe reemplazar la cadena '/sustituirPOSTsms' por la parte correspondiente
 		//de la URL suministrada por Altiria al dar de alta el servicio o pedir cuenta
 		// de prueba
 		HttpPost post = new HttpPost(url);
 
-		//Se crea la lista de parámetros a enviar en la petición POST
+		//Se crea la lista de parï¿½metros a enviar en la peticiï¿½n POST
 		List<NameValuePair> parametersList = new ArrayList<NameValuePair>();
-		//XX, YY y ZZ se corresponden con los valores de identificación del
+		//XX, YY y ZZ se corresponden con los valores de identificaciï¿½n del
 		//usuario en el sistema, proporcionados por Altiria al dar de alta el servicio
 		//o pedir cuenta de prueba
 		parametersList.add(new BasicNameValuePair("cmd", "sendsms"));
@@ -103,7 +104,7 @@ public class AltiriaSmsSenderFunctProvider extends ADbSmsSenderFunctProvider {
 		parametersList.add(new BasicNameValuePair("dest", phone));
 		parametersList.add(new BasicNameValuePair("msg", msg));
 		//Remitente autorizado por Altiria al dar de alta el servicio. No disponible
-		//en todos los países. Omitir el parametro si no se cuenta con ninguno.
+		//en todos los paï¿½ses. Omitir el parametro si no se cuenta con ninguno.
 		if (StringUtils.isNotEmpty(senderId)) {
 			parametersList.add(new BasicNameValuePair("senderId", senderId));
 		}
@@ -114,13 +115,13 @@ public class AltiriaSmsSenderFunctProvider extends ADbSmsSenderFunctProvider {
 		}
 		catch(UnsupportedEncodingException uex) {
 			ELogger.error(this, Rpa102FxAppConstants.LOGGER_CATEGORY,
-					"ERROR: codificación de caracteres no soportada", uex);
+					"ERROR: codificaciï¿½n de caracteres no soportada", uex);
 		}
 
 		CloseableHttpResponse response = null;
 
 		try {
-			//Se envía la petición
+			//Se envï¿½a la peticiï¿½n
 			response = httpClient.execute(post);
 			//Se consigue la respuesta
 			String resp = EntityUtils.toString(response.getEntity());
@@ -131,7 +132,7 @@ public class AltiriaSmsSenderFunctProvider extends ADbSmsSenderFunctProvider {
 				ret.setErrorId("" + response.getStatusLine().getStatusCode());
 				ret.setErrorMsg(
 						new StringBuilder()
-							.append("ERROR: Código de error HTTP: ").append(response.getStatusLine().getStatusCode())
+							.append("ERROR: Cï¿½digo de error HTTP: ").append(response.getStatusLine().getStatusCode())
 							.append("\nCompruebe que ha configurado correctamente la direccion suministrada por Altiria")
 							.toString()
 				);
@@ -143,14 +144,14 @@ public class AltiriaSmsSenderFunctProvider extends ADbSmsSenderFunctProvider {
 
 				ret.setSmsState(SmsState.ERROR);
 				ret.setErrorId(resp);
-				ret.setErrorMsg("Código de error de Altiria. Compruebe las especificaciones [" + resp + "]");
+				ret.setErrorMsg("Cï¿½digo de error de Altiria. Compruebe las especificaciones [" + resp + "]");
 			}
 		}
 		catch (IOException e) {
 			throw new EPException(e);
 		}
 		finally {
-			//En cualquier caso se cierra la conexión
+			//En cualquier caso se cierra la conexiï¿½n
 			post.releaseConnection();
 			if (response != null) {
 				try {
