@@ -1,4 +1,4 @@
-﻿﻿<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+﻿<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.elyeva.rpa102</groupId>
@@ -17,8 +17,7 @@
 
 	<properties>
 		<rpa102.version>0.2.0-SNAPSHOT</rpa102.version>
-		<eplatform.version>1.8.14</eplatform.version>
-		<eplatformfx.version>0.3.0</eplatformfx.version>
+		<eplatform.version>1.8.15</eplatform.version>
 		<!-- Derby -->
 		<derby.version>10.11.1.1</derby.version>
 		<!-- Apache htttp components  -->
@@ -54,19 +53,19 @@
 			</dependency>
 			<!-- eplatform dependences -->
 			<dependency>
-				<groupId>es.indra.eplatformfx</groupId>
+				<groupId>es.indra.eplatform</groupId>
 				<artifactId>eplatformfx-app</artifactId>
-				<version>${eplatformfx.version}</version>
+				<version>${eplatform.version}</version>
 			</dependency>
 			<dependency>
-				<groupId>es.indra.eplatformfx</groupId>
+				<groupId>es.indra.eplatform</groupId>
 				<artifactId>eplatformfx-app-xtras</artifactId>
-				<version>${eplatformfx.version}</version>
+				<version>${eplatform.version}</version>
 			</dependency>
 			<dependency>
-				<groupId>es.indra.eplatformfx</groupId>
+				<groupId>es.indra.eplatform</groupId>
 				<artifactId>eplatformfx-data-ui</artifactId>
-				<version>${eplatformfx.version}</version>
+				<version>${eplatform.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>es.indra.eplatform</groupId>

@@ -18,7 +18,7 @@
 			<artifactId>eplatform-data</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>es.indra.eplatformfx</groupId>
+			<groupId>es.indra.eplatform</groupId>
 			<artifactId>eplatformfx-data-ui</artifactId>
 		</dependency>
 		<dependency>
