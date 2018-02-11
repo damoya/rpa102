@@ -1,3 +1,7 @@
+rpa102 0.3.0 - Changes since rpa102 0.2.0
+-----------------------------------------------
+New send SMS dialog to many students
+
 rpa102 0.2.0 - Changes since rpa102 0.1.0
 -----------------------------------------------
 New Altiria SMS Sender Provider

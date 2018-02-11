@@ -16,8 +16,8 @@
 	</modules>
 
 	<properties>
-		<rpa102.version>0.2.0-SNAPSHOT</rpa102.version>
-		<eplatform.version>1.8.15</eplatform.version>
+		<rpa102.version>0.3.0</rpa102.version>
+		<eplatform.version>1.8.16</eplatform.version>
 		<!-- Derby -->
 		<derby.version>10.11.1.1</derby.version>
 		<!-- Apache htttp components  -->

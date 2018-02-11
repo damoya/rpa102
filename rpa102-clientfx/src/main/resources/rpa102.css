@@ -449,3 +449,41 @@
         #d86e3a,
         radial-gradient(center 50% 50%, radius 100%, #ea7f4b, #c54e2c);
 }
+
+.eplatformfx-task-list-view {
+    -fx-padding: 1;
+    -fx-border-insets: 10 0 0 20;
+	-fx-border-color: transparent;
+	-fx-background-color: transparent;
+}
+
+.eplatformfx-task-list-view:focused {
+    -fx-focus-color: transparent;
+}
+
+.eplatformfx-task-list-view .list-cell {
+	-fx-cell-size: 25;
+	-fx-background-color: transparent;
+	-fx-text-fill: -fx-text-base-color;
+}
+
+.eplatformfx-task-list-view .list-cell:pending {
+	-fx-graphic: url("/images/16px/timer-16-757575.png");
+}
+
+.eplatformfx-task-list-view .list-cell:running {
+	-fx-graphic: url("/images/16px/gear-16-757575.png");
+}
+
+.eplatformfx-task-list-view .list-cell:successful {
+	-fx-graphic: url("/images/16px/check-16-757575.png");
+}
+
+.eplatformfx-task-list-view .list-cell:error {
+	-fx-graphic: url("/images/16px/alert-circle-16-red-E53935.png");
+}
+
+.eplatformfx-task-list-view .list-cell:canceled {
+	-fx-graphic: url("/images/16px/cancel-16-757575.png");
+}
+

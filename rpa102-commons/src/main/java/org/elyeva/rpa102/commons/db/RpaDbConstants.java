@@ -162,6 +162,25 @@ public final class RpaDbConstants {
 		}
 	}
 
+
+	public static class TblCourses {
+		public static final String NAME = "COURSES";
+
+		public static final String COL_ID = "ID";
+		public static final String COL_DESCRIPTION = "DESCRIPTION";
+	}
+
+
+	public static class TblStudents {
+		public static final String NAME = "STUDENTS";
+
+		public static final String COL_ID = "ID";
+		public static final String COL_NAME = "NAME";
+		public static final String COL_PHONE_1 = "PHONE_1";
+		public static final String COL_PHONE_2 = "PHONE_2";
+	}
+
+
 	public static class TblStudentsByAcademicYear {
 		public static final String NAME = "STUDENTS_BY_ACADEMIC_YEAR";
 

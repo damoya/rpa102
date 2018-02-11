@@ -5,7 +5,6 @@ import org.elyeva.rpa102.cltfx.i18n.I18nRpa102Message;
 import org.elyeva.rpa102.commons.db.RpaDbConstants;
 
 import es.indra.eplatform.EPException;
-import es.indra.eplatform.EPlatformConstants;
 import es.indra.eplatform.app.IAppContext;
 import es.indra.eplatform.app.security.ASecurityProvider;
 import es.indra.eplatform.app.security.AuthenticatedUser;
@@ -140,19 +139,11 @@ public class Rpa102SecurityProvider extends ASecurityProvider {
 		}
 		finally {
 			if (dcUserRole != null) {
-				try {
-					dcUserRole.close();
-				} catch (EPException e) {
-					ELogger.error(this, EPlatformConstants.LOGGER_CATEGORY, e);
-				}
+				dcUserRole.close();
 			}
 
 			if (dcRolePermission != null) {
-				try {
-					dcRolePermission.close();
-				} catch (EPException e) {
-					ELogger.error(this, EPlatformConstants.LOGGER_CATEGORY, e);
-				}
+				dcRolePermission.close();
 			}
 		}
 	}

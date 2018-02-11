@@ -19,17 +19,19 @@
 			<property text="Envio de SMS"/>
 		</action>
 
+		<action id="rpa102.action.sendSMSToManyStudents">
+			<property class="es.indra.eplatformfx.app.actions.NewDialogAction"/>
+			<property dialogContentClass="org.elyeva.rpa102.cltfx.sms.SmsToManyStudentsDialogContent"/>
+			<property text="Envio de SMS a varios alumnos"/>
+			<property permissionId="SMS.sendToManySrudents"/>
+		</action>
+
 		<action id="rpa102.action.excelExport">
 			<property class="es.indra.eplatformfx.data.ui.actions.ExportToExcelXlsDataCollectionWksCmpAction"/>
 			<property text="Exportar a Excel"/>
 		</action>
-
 	</actionsRegistryExtension>
 
-
-	<!--
-	<import resource="/META-INF/config/mytracker-base-extensions.xml"/>
-	 -->
 
 	<!-- Defines application main menu -->
 	<menuDefinitionExtension extension-point-id="app-main-menu">
@@ -77,6 +79,7 @@
 		</menu>
 		<menu id="rpa.sms" pos="990" text="SMS">
 			<menuItem actionId="rpa102.action.sendSMS"/>
+			<menuItem actionId="rpa102.action.sendSMSToManyStudents"/>
 		</menu>
 		<!--
 		<menu id="rpa.admin" pos="990" text="Administración" permissionId="Admin">
@@ -112,6 +115,11 @@
 				class="es.indra.eplatformfx.app.xtras.wks.ButtonDashboardWksCmp"
 				actionId="rpa102.action.newBreakTimeStay"
 				permissionId="BreakTimeStays.NewEntry">
+			</workspaceComponent>
+			<workspaceComponent id="sendSmsToStudents"
+				class="es.indra.eplatformfx.app.xtras.wks.ButtonDashboardWksCmp"
+				actionId="rpa102.action.sendSMSToManyStudents"
+				permissionId="SMS.sendToManySrudents">
 			</workspaceComponent>
 		</workspace>
 	</workspaceExtension>

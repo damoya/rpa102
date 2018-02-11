@@ -150,6 +150,7 @@
 						</queryJoin>
 					</queryJoins>
 				</query>
+
 				<query id="queryStudents">
 					<queryTables>
 						<queryTable alias="A" name="STUDENTS">
@@ -244,9 +245,11 @@
 						text="Profesor"
 						formSize="long"/>
 
-				<uihandler id="uihandler-Curses"
+				<uihandler id="uihandler-Courses"
 						class="es.indra.eplatformfx.data.ui.metadata.columnhandlers.DataCollectionCmbUIColumnHandler"
 						relatedEntityType="COURSES"
+						valueColumn="ID"
+						descriptionColumn="DESCRIPTION"
 						text="Curso"/>
 
 				<uihandler id="uihandler-SmsSenderColumn"
@@ -738,6 +741,10 @@
 
 				<uitable name="STUDENTS_BY_ACADEMIC_YEAR" descColumn="STUDENT_ID" desc="Alumnos por Curso">
 					<uicolumn name="ACADEMIC_YEAR_ID" order="10">
+						<properties>
+							<property formSize="long"/>
+							<property filterType="equal"/>
+						</properties>
 						<uihandler id="uihandler-AcademicYearsDefaultValue"/>
 					</uicolumn>
 					<uicolumn name="STUDENT_ID"  order="20">
@@ -747,7 +754,7 @@
 						<properties>
 							<property filterType="equal"/>
 						</properties>
-						<uihandler id="uihandler-Curses"/>
+						<uihandler id="uihandler-Courses"/>
 					</uicolumn>
 				</uitable>
 
