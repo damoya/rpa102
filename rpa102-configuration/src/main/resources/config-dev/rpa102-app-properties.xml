@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+
+<properties>
+
+	<!-- Paths to config folders. -->
+	<entry key="Application.configPath">/config</entry>
+
+	<!-- Extensions. -->
+	<entry key="Application.extensionsResource">${Application.configPath}/rpa102-app-extensions.xml</entry>
+
+	<!-- Services. -->
+	<entry key="ServiceManager.servicesResource">${Application.configPath}/rpa102-app-services.xml</entry>
+
+	<entry key="Services.servicesConfigPath">${Application.configPath}/services</entry>
+
+	<!-- Workspace Manager Component. 	-->
+	<entry key="Application.WorkspaceManagerComponentClass">es.indra.eplatformfx.app.wksmgr.TabbedWorkspaceManagerComponent</entry>
+
+	<!-- Dialog Factory. -->
+	<entry key="Application.dialogFactoryClass">es.indra.eplatformfx.app.window.CustomDialogFactory</entry>
+
+	<!-- AppWindow Factory. -->
+	<entry key="Application.appWindowFactoryClass">es.indra.eplatformfx.app.window.CustomAppWindowFactory</entry>
+
+	<!--
+	<entry key="AppViewPanel.StatusBar.class">es.indra.eplatform.test.app1.StatusBar</entry>
+ 	-->
+
+	<!-- AppViewPanel properties -->
+	<entry key="AppViewPanel.IAppMenuView.position">TOP</entry>
+	<!--
+	<entry key="AppViewPanel.IAppMenuView.class">es.indra.eplatform.test.app1.TestAppMenuView</entry>
+	-->
+
+	<entry key="Application.styleSheets">rpa102.css</entry>
+
+	<!-- Security connection parameters -->
+	<entry key="db.jdbcDriverClass">org.apache.derby.jdbc.EmbeddedDriver</entry>
+	<entry key="db.jdbcURL">jdbc:derby:d:\rpa102\db</entry>
+	<!--
+	<entry key="db.jdbcURL">jdbc:derby:d:\rpa102\db;create=true</entry>
+	<entry key="db.jdbcURL">jdbc:derby:@{PROGRAMDATA}\rpa102\db;shutdown=true</entry>
+	<entry key="db.jdbcURL">jdbc:derby:c:\rpa102\db</entry>
+	 -->
+
+</properties>
