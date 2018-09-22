@@ -64,10 +64,10 @@
 							<queryColumn name="GO_OUT_FROM_SCHOOL_CAUSE"/>
 							<queryColumn name="DISTURB_CAUSE"/>
 							<queryColumn name="BREACH_OF_ORDER_CAUSE"/>
-							<queryColumn name="INTERRUPT_TEACHER_EXPLANATION_CAUSE"/>
+							<queryColumn name="INTERRUPT_STUDENTS_STUDY"/>
 							<queryColumn name="TO_NOT_WORK_CAUSE"/>
 							<queryColumn name="SMOKE_CAUSE"/>
-							<queryColumn name="HIT_OTHER_STUDENT_CAUSE"/>
+							<queryColumn name="STRONG_BAD_BEHAVIOUR"/>
 							<queryColumn name="OTHER_CAUSE"/>
 						</queryTable>
 						<queryTable alias="B" name="STUDENTS_BY_ACADEMIC_YEAR"/>
@@ -482,31 +482,31 @@
 
 						<uicolumn order="60" name="SCHOOL_MGMT_ORDER_CAUSE">
 							<properties>
-								<property text="Orden Dirección"/>
+								<property text="Orden dirección"/>
 								<property formSize="medium"/>
 								<property formGroup="1"/>
 							</properties>
 						</uicolumn>
 
-						<uicolumn order="63" name="USE_OF_MOBILE_CAUSE">
+						<uicolumn order="63" name="BREAK_MATERIAL_CAUSE">
 							<properties>
-								<property text="Uso Movil"/>
+								<property text="Causar pequeños daños"/>
 								<property formSize="medium"/>
 								<property formGroup="2"/>
 							</properties>
 						</uicolumn>
 
-						<uicolumn order="66" name="BREAK_MATERIAL_CAUSE">
+						<uicolumn order="66" name="LACK_OF_RESPECT_CAUSE">
 							<properties>
-								<property text="Rotura Material"/>
+								<property text="Trato Incorrecto"/>
 								<property formSize="medium"/>
 								<property formGroup="3"/>
 							</properties>
 						</uicolumn>
 
-						<uicolumn order="70" name="LACK_OF_RESPECT_CAUSE">
+						<uicolumn order="70" name="DISTURB_CAUSE">
 							<properties>
-								<property text="Perdida Respeto"/>
+								<property text="Perturbar desarrollo clase"/>
 								<property formSize="medium"/>
 								<property formGroup="1"/>
 							</properties>
@@ -520,49 +520,49 @@
 							</properties>
 						</uicolumn>
 
-						<uicolumn order="76" name="DISTURB_CAUSE">
+						<uicolumn order="73" name="USE_OF_MOBILE_CAUSE">
 							<properties>
-								<property text="Molestar en clase"/>
+								<property text="Uso movil"/>
 								<property formSize="medium"/>
 								<property formGroup="3"/>
 							</properties>
 						</uicolumn>
 
-						<uicolumn order="80" name="BREACH_OF_ORDER_CAUSE">
+						<uicolumn order="80" name="INTERRUPT_STUDENTS_STUDY">
 							<properties>
-								<property text="Incumplimiento Sanción"/>
+								<property text="Impedir estudio compañeros"/>
 								<property formSize="medium"/>
 								<property formGroup="1"/>
 							</properties>
 						</uicolumn>
 
-						<uicolumn order="83" name="INTERRUPT_TEACHER_EXPLANATION_CAUSE">
+						<uicolumn order="83" name="BREACH_OF_ORDER_CAUSE">
 							<properties>
-								<property text="Interrumpir al Profesor"/>
+								<property text="Incumplimiento Sanción"/>
 								<property formSize="medium"/>
 								<property formGroup="2"/>
 							</properties>
 						</uicolumn>
 
-						<uicolumn order="86" name="TO_NOT_WORK_CAUSE">
+						<uicolumn order="86" name="SMOKE_CAUSE">
 							<properties>
-								<property text="No Trabajar"/>
+								<property text="Fumar"/>
 								<property formSize="medium"/>
 								<property formGroup="3"/>
 							</properties>
 						</uicolumn>
 
-						<uicolumn order="90" name="SMOKE_CAUSE">
+						<uicolumn order="90" name="TO_NOT_WORK_CAUSE">
 							<properties>
-								<property text="Fumar"/>
+								<property text="Negarse a trabajar"/>
 								<property formSize="medium"/>
 								<property formGroup="1"/>
 							</properties>
 						</uicolumn>
 
-						<uicolumn order="93" name="HIT_OTHER_STUDENT_CAUSE">
+						<uicolumn order="93" name="STRONG_BAD_BEHAVIOUR">
 							<properties>
-								<property text="Golpear a Compañero"/>
+								<property text="Conductas graves"/>
 								<property formSize="medium"/>
 								<property formGroup="2"/>
 							</properties>
@@ -857,10 +857,10 @@
 						<uicolumn order="73" name="A.GO_OUT_FROM_SCHOOL_CAUSE"/>
 						<uicolumn order="76" name="A.DISTURB_CAUSE"/>
 						<uicolumn order="80" name="A.BREACH_OF_ORDER_CAUSE"/>
-						<uicolumn order="83" name="A.INTERRUPT_TEACHER_EXPLANATION_CAUSE"/>
+						<uicolumn order="83" name="A.INTERRUPT_STUDENTS_STUDY"/>
 						<uicolumn order="86" name="A.TO_NOT_WORK_CAUSE"/>
 						<uicolumn order="90" name="A.SMOKE_CAUSE"/>
-						<uicolumn order="93" name="A.HIT_OTHER_STUDENT_CAUSE"/>
+						<uicolumn order="93" name="A.STRONG_BAD_BEHAVIOUR"/>
 						<uicolumn order="96" name="A.OTHER_CAUSE"/>
 					</uicolumns>
 					<search-form>

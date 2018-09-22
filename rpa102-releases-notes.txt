@@ -1,3 +1,9 @@
+rpa102 0.4.0 - Changes since rpa102 0.3.0
+-----------------------------------------------
+Update eplatform dependences to 1.8.19-SNAPSHOT
+Update classroom incidences types
+Prepare data for 2018-2019 course
+
 rpa102 0.3.0 - Changes since rpa102 0.2.0
 -----------------------------------------------
 New send SMS dialog to many students

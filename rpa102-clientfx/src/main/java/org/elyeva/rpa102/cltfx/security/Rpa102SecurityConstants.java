@@ -1,6 +1,6 @@
 package org.elyeva.rpa102.cltfx.security;
 
-import es.indra.eplatform.permissions.PermissionDefinition;
+import es.indra.eplatform.security.permissions.PermissionDefinition;
 
 public final class Rpa102SecurityConstants {
 

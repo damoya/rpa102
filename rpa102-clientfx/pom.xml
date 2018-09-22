@@ -29,7 +29,10 @@
 			<groupId>es.indra.eplatform</groupId>
 			<artifactId>eplatformfx-data-ui</artifactId>
 		</dependency>
-
+		<dependency>
+			<groupId>es.indra.eplatform</groupId>
+			<artifactId>eplatform-security</artifactId>
+		</dependency>
 		<dependency>
   			<groupId>org.apache.httpcomponents</groupId>
   			<artifactId>httpclient</artifactId>

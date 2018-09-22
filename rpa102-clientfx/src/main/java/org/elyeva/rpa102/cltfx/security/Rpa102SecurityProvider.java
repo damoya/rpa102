@@ -9,7 +9,6 @@ import es.indra.eplatform.app.IAppContext;
 import es.indra.eplatform.app.security.ASecurityProvider;
 import es.indra.eplatform.app.security.AuthenticatedUser;
 import es.indra.eplatform.app.security.IAuthenticatedUser;
-import es.indra.eplatform.app.security.SecurityException;
 import es.indra.eplatform.data.IDataCollection;
 import es.indra.eplatform.data.datasources.DataSourceDefinition;
 import es.indra.eplatform.data.datasources.sql.SQLDataSource;

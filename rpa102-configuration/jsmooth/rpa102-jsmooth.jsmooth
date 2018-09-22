@@ -7,10 +7,11 @@
 <JVMSearchPath>exepath</JVMSearchPath>
 <JVMSearchPath>jview</JVMSearchPath>
 <arguments>--config ./config/rpa102-app-properties.xml</arguments>
-<classPath>jar\rpa102-clientfx-0.1.0-SNAPSHOT.jar</classPath>
+<classPath>jar\rpa102-clientfx-0.4.0.jar</classPath>
 <currentDirectory>${EXECUTABLEPATH}</currentDirectory>
 <embeddedJar>false</embeddedJar>
 <executableName>rpa102.exe</executableName>
+<iconLocation>rpa102-icon.png</iconLocation>
 <initialMemoryHeap>268435456</initialMemoryHeap>
 <mainClassName>org.elyeva.rpa102.cltfx.Rpa102FxApp</mainClassName>
 <maximumMemoryHeap>536870912</maximumMemoryHeap>
@@ -31,7 +32,7 @@
 </skeletonProperties>
 <skeletonProperties>
 <key>SingleInstance</key>
-<value>1</value>
+<value>0</value>
 </skeletonProperties>
 <skeletonProperties>
 <key>JniSmooth</key>
